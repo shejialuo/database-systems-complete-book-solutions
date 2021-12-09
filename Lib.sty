@@ -1,35 +1,64 @@
 \ProvidesPackage{Lib}
 
+% Add hperlink support
+\usepackage{blindtext}
+\usepackage{hyperref}
+
+% Add hyperlink style
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Database systems: the complete book 2nd Solutions},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+% Add support for subfiles.
 \usepackage{subfiles}
+
+% Add support for font config.
 \usepackage{fontspec}
+
+% Add support for code snippet.
 \usepackage{listings}
+
+% Add color support for code snippet.
 \usepackage{xcolor}
+
+% Set Fira Code as the font for code snippet
 \setmonofont[
   Contextuals={Alternate}
 ]{Fira Code}
 
+% Color settings for code snippet.
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
     basicstyle=\ttfamily,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
+    showtabs=false,
     tabsize=2
 }
-
 \lstset{style=mystyle}
+
+
+\usepackage{geometry}
+\geometry{a4paper}
+
+\setlength{\parindent}{0pt}
