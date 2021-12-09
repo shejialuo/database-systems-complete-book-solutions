@@ -14,8 +14,92 @@
 
 \subsubsection*{Exercise 1.2}
 
-\paragraph*{a)}
+
+a)
 
 \begin{lstlisting}[language=sql]
-SELECT address FROM Studio WHERE name='MGM studios'
+  SELECT address
+  FROM Studio WHERE
+  name = 'MGM studios';
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SELECT birthdate
+  FROM MovieStar
+  WHERE name = 'Sandra Bullock';
+\end{lstlisting}
+
+\hypertarget{Solution6.1.2c}{c)}
+
+If you interpret the question as asking only that \verb|Lover|
+appear as a substring, the the following is OK:
+
+\begin{lstlisting}[language=sql]
+  SELECT starName
+  FROM StarsIn
+  WHERE movieYear = 1980 OR movieTitle LIKE '%Love%';
+\end{lstlisting}
+
+However, another reasonable interpretation is that we want
+the word \verb|Love| as a word by itself. The query above
+returns stars of a Movie \emph{The Cook, the Thief, His
+Wife, and Her Lover}. To identify only titles that have
+\verb|Lover| as a word by itself, either at the beginning,
+the middle, the endor as the entire title, we need to use
+four patterns. The following query works;
+
+\begin{lstlisting}[language=sql]
+  SELECT starName
+  FROM StarsIn
+  WHERE movieYear = 1980 OR
+        movieTitle LIKE 'Love %' OR
+        movieTitle LIKE '% Love %' OR
+        movieTitle LIKE '% Love' OR
+        movieTitle = 'Love';
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  SELECT cert#
+  FROM MovieExec
+  WHERE netWorth >= 10000000
+\end{lstlisting}
+
+e)
+
+This example is the same as \hyperlink{Solution6.1.2c}{c)}.
+
+\begin{lstlisting}[language=sql]
+  SELECT name
+  FROM MovieStar
+  WHERE gender = 'M' OR
+        address LIKE 'Malibu %' OR
+        address LIKE '% Malibu %' OR
+        address LIKE '% Malibu' OR
+        address = 'Malibu';
+\end{lstlisting}
+
+\subsubsection*{Exercise 1.3}
+
+a) Any tuple with $a$ equal to 10 or $b$ equal to 20.
+
+b) Any tuple with $a$ equal to 10 and $b$ equal to 20.
+
+c) Any tuple except $a$ is \verb|NULL|.
+
+d) Any tuple with $a$ equal to $b$ except \verb|NULL|.
+
+e) Any tuple with $a \leq b$ except \verb|NULL|.
+
+\subsubsection*{Exercise 1.4}
+
+It's simple.
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+  FROM Movies
+  WHERE length > 0;
 \end{lstlisting}
