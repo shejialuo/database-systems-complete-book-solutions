@@ -1,0 +1,121 @@
+\subsection*{2.3 Defining a Relation Schema in SQL}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Product(
+    maker VARCHAR(50),
+    model INT,
+    type VARCHAR(25),
+    PRIMARY_KEY(maker)
+  );
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE PC(
+    model INT,
+    speed FLOAT,
+    ram INT,
+    hd INT,
+    price FLOAT,
+    PRIMARY_KEY(model)
+  );
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Laptop(
+    model INT,
+    speed FLOAT,
+    ram INT,
+    hd INT,
+    screen FLOAT,
+    price FLOAT,
+    PRIMARY_KEY(model)
+  );
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Printer(
+    model INT,
+    color BOOLEAN,
+    type VARCHAR(25),
+    price FLOAT,
+    PRIMARY_KEY(model)
+  );
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Printer DROP color
+\end{lstlisting}
+
+f)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Laptop ADD od VARCHAR(25) DEFAULT 'none'
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE classes(
+    class VARCHAR(50) UNIQUE,
+    type VARCHAR(50),
+    country VARCHAR(50),
+    numGums INT,
+    bore FLOAT,
+    displacement INT
+  );
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Ships(
+    name VARCHAR(50),
+    class VARCHAR(59),
+    launched INT
+  );
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Battles(
+    name VARCHAR(50) UNIQUE,
+    data DATE
+  );
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE TABLE Outcomes(
+    ship VARCHAR(50),
+    battle VARCHAR(50),
+    result VARCHAR(50)
+  );
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Classes DROP bore;
+\end{lstlisting}
+
+f)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Ships ADD yard VARCHAR(50);
+\end{lstlisting}
