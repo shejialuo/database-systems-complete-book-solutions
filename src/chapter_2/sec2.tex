@@ -1,0 +1,84 @@
+\subsection*{2.2 Basics of the Relational Model}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+Attributes of relation \verb|Accounts| are \verb|acctNo|
+, \verb|type| and \verb|balance|.
+
+Attributes of relation \verb|Customers| are \verb|firstName|
+, \verb|lastName|, \verb|idNo| and \verb|account|.
+
+b)
+
+For the relation \verb|Accounts|:
+
+\begin{itemize}
+  \item (12345, savings, 12000)
+  \item (23456, checking, 1000)
+  \item (34567, savings, 25)
+\end{itemize}
+
+For the relation \verb|Customers|:
+
+\begin{itemize}
+  \item (Robbie, Banks, 901-222 12345)
+  \item (Lena, Hand, 805-333, 12345)
+  \item (Lena, Hand, 805-333, 23456)
+\end{itemize}
+
+c)
+
+\begin{itemize}
+  \item (12345, savings, 12000)
+  \item (Robbie, Banks, 901-222 12345)
+\end{itemize}
+
+d)
+
+\begin{itemize}
+  \item Accounts(acctNo, type, balance)
+  \item Customers(firstName, lastName, idNo, account)
+\end{itemize}
+
+e)
+
+\begin{itemize}
+  \item Accounts(acctNo: integer, type: string, balance: integer)
+  \item Customers(firstName: string, lastName:string,
+                  idNo: string, account: integer)
+\end{itemize}
+
+f)
+
+\begin{itemize}
+  \item Accounts(integer, string, integer)
+  \item Customers(string, string, string, integer)
+\end{itemize}
+
+g)
+
+Just swap the attributes (whatever you like).
+
+\begin{itemize}
+  \item Accounts(type, accNo, balance)
+  \item Customers(lastName, firstName, idNo, account)
+\end{itemize}
+
+\subsubsection*{Exercise 2.2}
+
+Student(id, firstName, lastName)
+
+\verb|id| is the key.
+
+\subsubsection*{Exercise 2.3}
+
+It is a combinatorial problem. It is important how many
+attributes we have. Order of tuples doesn't matter.
+
+a) $3 \times 2 \time 1 = 6$
+
+b) $4 \times 3 \times 2 \times 1 = 12$
+
+c) $n!$
