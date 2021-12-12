@@ -1,0 +1,277 @@
+\subsection*{2.4 An Algebraic Query Language}
+
+\subsubsection*{Exercise 4.1}
+
+a)
+
+\begin{align*}
+  R1 &:= \sigma_{speed \geq 3.00}(PC) \\
+  R2 &:= \pi_{model}(R1)
+\end{align*}
+
+b)
+
+\begin{align*}
+  R1 &:= \sigma_{hd \geq 100}(Laptop) \\
+  R2 &:= Product \bowtie (R2) \\
+  R3 &:= \pi_{maker}(R3)
+\end{align*}
+
+c)
+
+\begin{align*}
+  R1 &:= \sigma_{maker=B}(Product \bowtie PC) \\
+  R2 &:= \sigma_{maker=B}(Product \bowtie Laptop) \\
+  R3 &:= \sigma_{maker=B}(Product \bowtie Printer) \\
+  R4 &:= \pi_{model, price}(R1) \cup \pi_{model, price}(R2)
+         \cup \pi_{model, price}(R3)
+\end{align*}
+
+d)
+
+\begin{align*}
+  R1 &:= \sigma_{color=true AND type=layser}(Printer) \\
+  R2 &:= \pi_{model}(R1)
+\end{align*}
+
+e)
+
+\begin{align*}
+  R1 &:= \sigma_{type=laptop}(Product) \\
+  R2 &:= \sigma_{type=pc}(Product) \\
+  R3 &:= \pi_{maker}(R1) - \pi_{maker}(R2)
+\end{align*}
+
+f)
+
+\begin{align*}
+  R1 &:= \rho_{PC1}(PC) \\
+  R2 &:= \rho_{PC2}(PC) \\
+  R3 &:= R1 \bowtie_{PC1.hd = PC2.hd AND PC1.model <> PC2.model} R2 \\
+  R4 &:= \pi_{hd}(R3)
+\end{align*}
+
+g)
+
+The most important thing here is to notice that \emph{a pair
+should be listed only once}. Here we use \verb|PC1.model < PC.model|
+to achieve this functionality.
+
+\begin{align*}
+  R1 &:= \rho_{PC1}(PC) \\
+  R2 &:= \rho_{PC2}(PC) \\
+  R3 &:= R1 \bowtie_{PC1.speed = PC2.speed AND PC1.ram =
+         P2.ram and PC1.model < PC2.model} R2
+\end{align*}
+
+h)
+
+\begin{align*}
+  R1 &:= \pi_{model}(\sigma_{speed \geq 2.80}(PC))
+  \cup \pi_{model}(\sigma_{speed \geq 2.80}(PC)) \\
+  R2 &:= \pi_{maker, model}(R1 \bowtie Product) \\
+  R3 &:= \rho_{R3(maker2, model2)}(R2) \\
+  R4 &:= R2 \bowtie_{maker = maker2 AND model <> model2} R3 \\
+  R5 &:= \pi_{maker}(R4)
+\end{align*}
+
+i)
+
+\begin{align*}
+  R1 &:= \pi_{model, speed}(PC) \\
+  R2 &:= \pi_{model, speed}(PC) \\
+  R3 &:= R1 \cup R2 \\
+  R4 &:= \rho_{R4(model2, speed2)}(R3) \\
+  R5 &:= \pi_{model, speed}(R3 \bowtie_{speed < speed2} R4) \\
+  R6 &:= R3 - R5 \\
+  R7 &:= \pi_{maker}(R6 \bowtie Product)
+\end{align*}
+
+j)
+
+\begin{align*}
+  R1 &:= \pi_{maker, speed}(PC \bowtie Product) \\
+  R2 &:= \rho_{R2(maker2, speed2)}(R1) \\
+  R3 &:= \rho_{R3(maker3, speed3)}(R1) \\
+  R4 &:= R1 \bowtie_{maker = maker2 AND speed <> speed2} R2 \\
+  R5 &:= R4 \bowtie_{maker = maker3 AND speed3 <> speed2
+         AND speed3 <> speed} R3 \\
+  R6 &:= \pi_{maker}(R5)
+\end{align*}
+
+k)
+
+\begin{align*}
+  R1 &:= \pi_{maker, model}(PC \bowtie Product) \\
+  R2 &:= \rho_{R2(maker2, model2)}(R1) \\
+  R3 &:= \rho_{R3(maker3, model3)}(R1) \\
+  R4 &:= \rho_{R4(maker4, model4)}(R1) \\
+  R5 &:= R1 \bowtie_{maker=maker2 AND model <> model2} R2 \\
+  R6 &:= R3 \bowtie_{maker=maker3 AND model3 <> model2
+         AND model3 <> model}R5 \\
+  R7 &:= R4 \bowtie_{maker4=maker AND (model4 = model OR
+         model4 = model2 OR model4 = model3)} R6 \\
+  R8 &:= \pi_{maker}(R7)
+\end{align*}
+
+\subsubsection*{Exercise 4.2}
+
+It's a dirty job. I omit detail here. But do remember
+\emph{a query tree is a tree data structure representing
+a relational algebra expression}.
+
+\subsubsection*{Exercise 4.3}
+
+a)
+
+\begin{align*}
+  R1 &:= \sigma_{bore \geq 16}(Classes) \\
+  R2 &:= \pi_{class,country}(R1)
+\end{align*}
+
+b)
+
+\begin{align*}
+  R1 &:= \sigma_{launched < 1921}(Ships) \\
+  R2 &:= \pi_{name}(R1)
+\end{align*}
+
+c)
+
+\begin{align*}
+  R1 &:= \sigma_{battle=DenmarkStrait AND result=sunk}
+         (Outcomes) \\
+  R2 &:= \pi_{ship}(R1)
+\end{align*}
+
+d)
+
+\begin{align*}
+  R1 &:= Classes \bowtie_{launched > 1921 AND
+         displacement > 35000} Ships \\
+  R2 &:= \pi_{name}(R1)
+\end{align*}
+
+e)
+
+\begin{align*}
+  R1 &:= \sigma_{battle = Guadalcanal}(Outcomes) \\
+  R2 &:= Ships \bowtie_{ship = name} R1 \\
+  R3 &:= Classes \bowtie R2 \\
+  R4 &:= \pi_{name, displacement, numGuns}(R3)
+\end{align*}
+
+f)
+
+\begin{align*}
+  R1 &:= \pi_{ship}(Outcomes) \\
+  R2 &:= \rho_{R2(name)}(R1) \\
+  R3 &:= \pi_{name}(Ships \cup R2)
+\end{align*}
+
+g)
+
+\begin{align*}
+  R1 &:= \pi_{class}(Classes) \\
+  R2 &:= \pi_{class}(\sigma_{class <> name}(Ships)) \\
+  R3 &:= R1 - R2
+\end{align*}
+
+h)
+
+\begin{align*}
+  R1 &:= \pi_{country}(\sigma_{type=bb}(Classes)) \\
+  R2 &:= \pi_{country}(\sigma_{type=bc}(Classes)) \\
+  R3 &:= R1 \cap R2
+\end{align*}
+
+i)
+
+\begin{align*}
+  R1 &:= \pi_{ship, result, date}(Battles
+         \bowtie_{battle = name} Outcomes) \\
+  R2 &:= \rho(R2(ship, result, date))(R1) \\
+  R3 &:= \pi_{ship}(R1 \bowtie_{ship = ship2 AND
+         result = danamaged AND date < date2} R2)
+\end{align*}
+
+\subsubsection*{Exercise 4.4}
+
+Just like Exercise 4.2, I omit detail here.
+
+\subsubsection*{Exercise 4.5}
+
+Natural join does not use any comparison operator. It
+does not concatenate the way a Cartesian product does.
+We can perform a Natural Join only if there is at least
+one common attribute that exists between two relations.
+In addition, the attributes must have the same name and
+domain.
+
+\subsubsection*{Exercise 4.6}
+
+Here we assume that there are two relations:
+
+\begin{itemize}
+  \item $A(a_{1},a_{2},\dots,a_{n})$
+  \item $B(b_{1},b_{2},\dots,b_{n})$
+\end{itemize}
+
+First, the $\cap$ operation is \emph{monotone}. Assume that
+$C = A \cap B$. When $A$ adds a tuple $a_{n + 1}$, $C$ may
+be not changed or become $C' = C \cup a_{n + 1}$ such that
+$C \subseteq C'$. For other situations, the idea is the same.
+
+Second, the $\sigma$ operator is \emph{monotone}. Assume that
+$C = \sigma_{c}(A)$. When $A$ adds a tuple $a_{n + 1}$, $C$ may
+be not changed or become $C' = C \cup a_{n + 1}$ such that
+$C \subseteq C'$.
+
+\subsubsection*{Exercise 4.7}
+
+a)
+
+\begin{itemize}
+  \item $\max =  n + m$
+  \item $\min = \max(n, m)$
+\end{itemize}
+
+b)
+
+\begin{itemize}
+  \item $\max = n \times m$
+  \item $\min = 0$
+\end{itemize}
+
+c)
+
+\begin{itemize}
+  \item $\max = n \times m$
+  \item $\max = 0$
+\end{itemize}
+
+d)
+
+\begin{itemize}
+  \item $\max = n$
+  \item $\min = 0$
+\end{itemize}
+
+\subsubsection*{Exercise 4.8}
+
+\begin{itemize}
+  \item $\pi_{1\dots n}(R \bowtie S)$
+  \item $\pi_{1\dots n}(\sigma_{R.1=S.1 
+        \dots R.K=S.K}(R \times S))$
+  \item $R \bowtie_{1, \dots k}(S)$
+\end{itemize}
+
+\subsubsection*{Exercise 4.9}
+
+$R - \pi_{1,\dots,n}(R \bowtie S)$
+
+\subsubsection*{Exercise 4.10}
+
+An intuitive property of the division operator of
+the relational algebra is simply that it is the inverse
+of the cartesian product.
