@@ -1,0 +1,103 @@
+\subsection*{2.5 Constraints on Relations}
+
+\subsubsection*{Exercise 5.1}
+
+a)
+
+$$
+\sigma_{speed < 2.00 AND price > 500} = \emptyset
+$$
+
+b)
+
+$$
+\sigma_{screen < 15.4 AND hd < 100 AND
+price \geq 1000}(Laptop) = \emptyset$$
+
+c)
+
+$$
+\pi_{maker}(\sigma_{type=pc}(Product))
+\cap \pi_{maker}(\sigma_{type=laptop}(
+Product)) = \emptyset
+$$
+
+d)
+
+\begin{align*}
+  R1 &:= \pi_{maker, model, speed}(Product \bowtie PC) \\
+  R2 &:= \pi_{maker, speed}(Product \bowtie Laptop) \\
+  R3 &:= \pi_{model}(R1 \bowtie_{R1.maker=R2.maker AND 
+         R1.speed > R2.speed} R2) \\
+  R4 &:= \pi_{model}(R3) = \emptyset
+\end{align*}
+
+e)
+
+\begin{align*}
+  R1 &:= \pi_{ram, price}(PC) \\
+  R2 &:= \pi_{ram, price}(Laptop) \\
+\end{align*}
+
+And we can get constraints such that
+
+$$
+R1 \bowtie_{R2.ram > R1.ram AND
+R2.price \leq R1.price} R2 = \emptyset
+$$
+
+\subsubsection*{Exercise 5.2}
+
+a)
+
+$$
+\pi_{Class}(\sigma_{bore > 16}(Classes))
+= \emptyset
+$$
+
+b)
+
+$$
+\pi_{Class}(\sigma_{bore > 16
+AND numGuns > 9}(Classes))= \emptyset
+$$
+
+c)
+
+$$
+\pi_{Class}(\sigma_{ship > 2}(Outcome))
+=\emptyset
+$$
+
+d)
+
+$$
+\pi_{country}(\sigma_{type=battlecruiser}(Classes))
+\cap \pi_{country}(\sigma_{type=battleship}(Classes))
+= \emptyset
+$$
+
+e)
+
+\begin{align*}
+  R1 &:= \sigma_{numGuns > 9}(Classes) \\
+  R2 &:= \sigma_{numGuns < 9}(Classes) \\
+  R3 &:= (R1 \bowtie Ships) \bowtie Battles \\
+  R4 &:= (R2 \bowtie Ships) \bowtie 
+         \sigma_{result=sunk}(Battles) \\
+  R5 &:= \pi_{battlename}(R3) \bowtie 
+         \pi_{battlename}(R4) = \emptyset
+\end{align*}
+
+\subsubsection*{Exercise 5.3}
+
+$$
+\pi_{v_{1}, v_{2},\dots,v_{n}}(A_{1},A_{2},\dots,A_{n})
+\subseteq \pi_{v_{1}, v_{2},\dots,v_{n}}(B_{1},B_{2},\dots,B_{n})
+$$
+
+\subsubsection*{Exercise 5.4}
+
+If we have 3 relational-algebra expressions for example
+$E1$, $E2$ and $E3$ we can not express them like
+$E1 =E2 = E3$. Thus, the answer is no.
