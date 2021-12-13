@@ -1,0 +1,67 @@
+\subsection*{3.1 Functional Dependencies}
+
+\subsubsection*{Exercise 1.1}
+
+The FD's:
+
+\begin{itemize}
+  \item Social Security number $\to$ name
+  \item area code $\to$ state
+  \item street address, city, state $\to$ ZIP code
+  \item personal number $\to$ name
+\end{itemize}
+
+Possible keys are any attributes on the left hand side
+of the arrows.
+
+\subsubsection*{Exercise 1.2}
+
+Let $x, y, z$ are coordinates of the molecule and $v_{x},
+v_{y}, v_{z}$ are the velocities of the corresponding
+coordinates.
+
+The FD's:
+
+\begin{itemize}
+  \item $x, y, z \to v_{x}$
+  \item $x, y, z \to v_{y}$
+  \item $x, y, z \to v_{z}$ 
+\end{itemize}
+
+$x, y, z$ and $v_{x}, v_{y}, v_{z}$ are the keys because
+with these combination only we can get molecule in the
+closed surface.
+
+\subsubsection*{Exercise 1.3}
+
+a)
+
+Apart $A_{1}$ there are $n - 1$ attributes to be added.
+For each attributes, there are tow choices: whether to include
+it or not. Due to the reason that set is unordered. Hence
+
+$$
+|A_{1}| = 2^{n-1}
+$$
+
+b)
+
+$$
+|A_{1} \cup A_{2} | = |A_{1}| + |A_{2}| - |A_{1} \cap A_{2}|
+= 2^{n - 1} + 2 ^ {n - 1} - 2 ^ {n - 2}
+$$
+
+c)
+
+$$
+|A_{1}, A_{2}| + |A_{3}, A_{4}| - |A_{1}, A_{2},
+A_{3}, A_{4}| = 2^{n - 2} + 2 ^ {n - 2} - 2 ^ {n - 4}
+$$
+
+d)
+
+$$
+|A_{1}, A_{2}| + |A_{1}, A_{3}| - |A_{1}, A_{2},
+A_{3}| = 2^{n - 2} + 2 ^ {n - 2} - 2 ^ {n - 3}
+$$
+
