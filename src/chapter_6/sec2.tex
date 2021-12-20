@@ -1,0 +1,55 @@
+\subsection*{6.2 Query Involving More Than One Relation}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  SELECT name
+  FROM StarsIn, MovieStar
+  WHERE gender = 'M' AND name = starName
+        AND movieTitle = 'Titanic';
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SELECT starName
+  FROM StarsIn, Movies
+  WHERE gender = 'M' AND name = starName
+        AND year = 1995
+        AND studioName = 'MGM';
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+
+\end{lstlisting}
+
+\subsubsection*{Exercise 2.2}
+
+A systematic way to handle this problem is to create
+a tuple variable for every $R_{i}, i = 1,2,\dots,n$,
+whether we need to or not. That is, the \verb|FROM|
+clause is
+
+\begin{lstlisting}[language=sql]
+  FROM R1 AS T1, R2 AS T2, ...
+\end{lstlisting}
+
+Now, build the \verb|WHERE| clause from $C$ by
+replacing every reference to some attribute $A$
+of $R_{i}$ by $T_{i}.A$. Also, build the
+\verb|SELECT| clause from list of attributes $L$
+by replacing every attribute $A$ of $R_{i}$ by
+$T_{i}.A$.
+
+\subsubsection*{Exercise 2.3}
+
+\begin{lstlisting}[language=sql]
+  SELECT L
+  FROM R1 NATURAL JOIN R2, ...
+  ON R1.column = R2.column AND ...
+  WHERE C;
+\end{lstlisting}
