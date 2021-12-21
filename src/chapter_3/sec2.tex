@@ -1,0 +1,318 @@
+\subsection*{3.2 Rules About Functional Dependencies}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+First, we need to find all the closures of the subsets
+of the attributes.
+
+\begin{align*}
+  \{A\}^{+} &= \{A\},   \{B\}^{+} = \{B\},
+  \{C\}^{+} = \{A, C, D\}, \{D\}^{+}= \{A,D\} \\
+  \{AB\}^{+} &= \{A,B,C,D\},  \{AC\}^{+} = \{A,C,D\},
+  \{AD\}^{+} = \{A,D\} \\
+  \{BC\}^{+} &= \{A,B,C,D\}, \{BD\}^{+} = \{A,B,C,D\},
+  \{CD\}^{+} = \{A,C,D\} \\
+  \{ABC\}^{+} &= \{A,B,D\}^{+} = \{BCD\}^{+} = \{A,B,C,D\},
+  \{ACD\}^{+} = \{A,C,D\}
+\end{align*}
+
+The answer is obvious.
+
+b)
+
+From a), it is easy to get that the keys are:
+
+$$
+AB, BC \ \mbox{AND} \ BD
+$$
+
+c)
+
+The superkeys are all those that contain one of those three
+keys. The proper superkeys are:
+
+$$
+ABC, ABD, BCD \ \mbox{AND} \ ABCD
+$$
+
+\subsubsection*{Exercise 2.2}
+
+i)
+
+It is obvious that $\{A\}^{+} = \{A,B,C,D\}$. So there is no
+need to calculate the closures of subsets which contain $A$.
+Use this idea, we can simplify the calculation.
+
+\begin{align*}
+  \{A \_ \ \_ \ \_ \}^{+} &= \{A,B,C,D\} \\
+  \{B \ \_ \ \_ \}^{+} &= \{B,C,D\} \\
+  \{C\}^{+} &= \{C\}, \{D\}^{+} = \{D\}, \{CD\}^{+} = \{C,D\}
+\end{align*}
+
+The keys are:
+
+$$
+A, AB, AC \ \mbox{AND} \ AD
+$$
+
+The superkeys are:
+
+$$
+ABC, ABD, ACD \ \mbox{AND} \ ABCD
+$$
+
+ii)
+
+\begin{align*}
+  \{A\}^{+} &= \{A\},   \{B\}^{+} = \{B\},
+  \{C\}^{+} = \{C\}, \{D\}^{+}= \{D\} \\
+  \{AB\}^{+} &= \{A,B,C,D\},  \{AC\}^{+} = \{A,C\},
+  \{AD\}^{+} = \{A,B,C,D\} \\
+  \{BC\}^{+} &= \{A,B,C,D\}, \{BD\}^{+} = \{B,D\},
+  \{CD\}^{+} = \{A,B,C,D\} \\
+  \{ABC\}^{+} &= \{A,B,D\}^{+} = \{BCD\}^{+} = \{ACD\}^{+} = \{A,B,C,D\}
+\end{align*}
+
+The keys are:
+
+$$
+AB, AD, BC \ \mbox{AND} \ CD
+$$
+
+The superkeys are:
+
+$$
+ABC, ABD, BCD, ACD \ \mbox{AND} \ ABCD
+$$
+
+
+iii)
+
+\begin{align*}
+  \{A \_ \ \_ \ \_ \}^{+} &= \{A,B,C,D\} \\
+  \{B\_ \ \_ \ \_ \}^{+} &= \{A,B,C,D\} \\
+  \{C\_ \ \_ \ \_ \}^{+} &= \{A,B,C,D\} \\
+  \{D\_ \ \_ \ \_ \}^{+} &= \{A,B,C,D\} \\
+\end{align*}
+
+The keys are:
+
+$$
+A, B, C \ \mbox{AND} \ D
+$$
+
+The superkeys are:
+
+$$
+\mbox{Subset} \{A,B,C,D\} - \mbox{keys}
+$$
+
+\subsubsection*{Exercise 2.3}
+
+a)
+
+$$
+\{A_{1}, A_{2}, \cdots, A_{n}\} ^ {+} = \{A_{1}, A_{2}, \cdots, A_{n}, B\}
+$$
+
+And we can easily get:
+
+$$
+\{A_{1}, A_{2}, \cdots, A_{n}, C\} ^ {+} = \{A_{1}, A_{2}, \cdots, A_{n}, B\}
+$$
+
+Thus proved.
+
+b)
+
+It can be easily proved by trivial FD.
+
+c)
+
+$$
+C_{1}C_{2}\cdots C_{k} \to D \Rightarrow B_{1}
+B_{2}\cdots B_{m} E_{1}E_{2}\cdots E_{j}
+$$
+
+Use the augmentation rule.
+
+$$
+A_{1}A_{2}\cdots A_{n} \to B_{1}B_{2} \cdots B_{m}
+\Rightarrow A_{1}A_{2}\cdots A_{n}E_{1}E_{2}\cdots E_{j}
+\to B_{1}B_{2}\cdots B_{m} E_{1}E_{2}\cdots E_{j}
+$$
+
+Use the transition rule.
+
+$$
+A_{1}A_{2}\cdots A_{n}E_{1}E_{2}\cdots E_{j} \to D
+$$
+
+d)
+
+$$
+\{A_{1}, A_{2}, \cdots, A_{n}\} ^ {+} = \{A_{1}, A_{2}, \cdots, A_{n}, B_{1}
+,B_{2} \cdots B_{m} \}
+$$
+
+$$
+\{C_{1}, C_{2}, \cdots, C_{k}\} ^ {+} = \{C_{1}, C_{2}, \cdots, C_{k}, D_{1}
+,D_{2} \cdots D_{j} \}
+$$
+
+Using augmentation and combing rules, thus proved.
+
+\subsubsection*{Exercise 2.4}
+
+a)
+
+Attribute $A$ represents Social Security Number and $B$
+represented a person's name.
+
+b)
+
+Attribute $A$ represents Social Security Number and $B$
+represented a person's gender, $C$ represents a person's name.
+
+c)
+
+Attribute $A$ represents latitude and $B$ represents longitude,
+$C$ represents a point on the world map.
+
+\subsubsection*{Exercise 2.5}
+
+Consider the relationship $R(A,B,C,D)$. Suppose there exists
+a non-trivial dependency $A \to B$. Then:
+
+\begin{itemize}
+  \item There exist an attribute $B$ that can be functionally
+        determined by all other attributes.
+  \item For some value of $A$ the value of $B$ can be functionally
+        determined
+\end{itemize}
+
+It is given that no attribute can be functionally determined by all
+other attributes. This is contradiction.
+
+\subsubsection*{Exercise 2.6}
+
+First, we convert $X \subseteq Y$ to $Y = X + S$. It is obvious that
+$\{Y\}^{+} = \{X\}^{+} + \{S\}^{+}$. Thus
+
+$$
+X^+ \subseteq Y^+
+$$
+
+\subsubsection*{Exercise 2.7}
+
+We prove it by concept, when we find the closure of $X$, it must go
+to the end. So for $(X^+)^+$, it can't find any suitable
+attributes.
+
+\subsubsection*{Exercise 2.8}
+
+a)
+
+\begin{align*}
+  A &\to A \\
+  B &\to B \\
+  C &\to C \\
+  D &\to D 
+\end{align*}
+
+b)
+
+$$
+ABC \to D
+$$
+
+c)
+
+\begin{align*}
+  A &\to B \\
+  ABC &\to D 
+\end{align*}
+
+\subsubsection*{Exercise 2.9}
+
+\begin{itemize}
+  \item $A \to B, B \to A, B \to C , C \to B$
+  \item $A \to B, B \to C, C \to A$
+  \item $B \to A, A \to C, C \to B$
+  \item $C \to A, A \to B, B \to C$
+  \item $A \to C, B \to A, C \to A, C \to B$
+  \item $C \to A, A \to B, B \to A, B \to C$
+  \item $C \to B, C \to A, B \to C, A \to B$
+  \item $B \to C, B \to A, A \to B, C \to B$
+  \item $A \to B, A \to C, B \to A, C \to B$
+\end{itemize}
+
+\subsubsection*{Exercise 2.10}
+
+a)
+
+\begin{align*}
+  \{A\}^+ &= \{A\}, \{B\}^+ = \{B\}, \{C\}^+ = \{A, C, E\} \\
+  \{AB\}^+ &= \{A, B, C, D ,E\}, \{BC\}^+ = \{A, B, C, E\} \\
+  \{AC\}^+ &= \{A, C, E\}, \{ABC\}^+ = \{A, B, C, D,E\}
+\end{align*}
+
+So we can find the FD in $S$: $AB \to C$ and $C \to A$.
+
+b)
+
+\begin{align*}
+  \{A\}^+ &= \{A,D\}, \{B\}^+ = \{B\}, \{C\}^+ = \{C\} \\
+  \{AB\}^+ &= \{A, B, D, E\}, \{BC\}^+ = \{B, C\} \\
+  \{AC\}^+ &= \{A, C, E\}, \{ABC\}^+ = \{A, B, C, D, E\}
+\end{align*}
+
+From the above closure, $A$ and $C$ are the only attributes
+presents in $S$. So we can find FD in $S$: $A \to B, C \to B$.
+
+c)
+
+\begin{align*}
+  \{A\}^+ &= \{A\}, \{B\}^+ = \{B\}, \{C\}^+ = \{C\} \\
+  \{AB\}^+ &= \{A, B, D\}, \{BC\}^+ = \{A, B, C, D, E\} \\
+  \{AC\}^+ &= \{A, B, C, D,E\}, \{ABC\}^+ = \{A, B, C, D, E\}
+\end{align*}
+
+For $\{AB\}^+$, $A$ and $B$ are the only attributes
+presents in $S$.For $\{AC\}^+$ and $\{BC\}^+$, $A$, $B$ and $C$
+are the only attributes. So we can find FD in $S$:
+$A \to B, B \to A, C \to B, C \to A$.
+
+d)
+
+\begin{align*}
+  \{A\_ \ \_\}^+ &= \{A,B,C\} \\
+  \{B\_ \ \_\}^+ &= \{A,B,C\} \\
+  \{C\_ \ \_\}^+ &= \{A,B,C\} 
+\end{align*}
+
+So we can find FD in $S$:
+$A \to B, B \to C, C \to A$.
+
+\subsubsection*{Exercise 2.11}
+
+We have relation schema $S(A,B,C,D)$ with
+
+\begin{align*}
+  A &\to B \\
+  B &\to C \\
+  B &\to D
+\end{align*}
+
+We can compute $\{A\}^+ = \{A,B,C,D\}$. So we can get
+
+\begin{align*}
+  A &\to B \\
+  B &\to C
+\end{align*}
+
+Gives $A \to C$. Thus, if FD $F$ follows from the given FD's,
+then $F$ can be proved from the given FD's using Armstrong's
+axioms.
