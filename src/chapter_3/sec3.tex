@@ -1,0 +1,148 @@
+\subsection*{3.3 Design of Relational Database Schemas}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\} \\
+  \{C\}^{+} &= \{A,C,D\} \\
+  \{D\}^{+} &= \{A,D\} 
+\end{align*}
+
+The second and the third FD's violate the BCNF.
+
+By choosing FD $C \to D$, we split the relation into
+$R_{1}(A,C,D)$ and $R_{2}(B,C)$
+
+Next, we need to find FD's in $R_{1}$ and $R_{2}$. There are
+only two attributes in $R_{2}$, so $R_{2}$ is in BCNF.
+
+\begin{align*}
+  \{A\}^+ &= \{A\}, \{C\}^+ = \{A, C, D\}, \{D\}^+ = \{A,D\} \\
+  \{AC\}^+ &= \{A, C, D\}, \{AD\}^+ = \{A, D\} \\
+  \{CD\}^+ &= \{A, C, D\} 
+\end{align*}
+
+So we can find the FD's in $R_{1}$ are: $C \to D, D \to A$. $C$
+is not a superkey. So again, dut to the FD $D \to A$,we compose
+$R_{1}$ into $R_{3}(A,D)$ and $R_{4}(C,D)$.
+
+b)
+
+We simply compute $\{B\}^{+} = \{B,C,D\}$. Since $A$ is not in the
+closure, there is a violation of the BCNF.
+
+By choosing FD $B \to C$, we split the relation into
+$R_{1}(B,C,D)$ and $R_{2}(A,B)$.
+
+Next, we need to find FD's in $R_{1}$ and $R_{2}$. There are
+only two attributes in $R_{2}$, so $R_{2}$ is in BCNF.
+
+\begin{align*}
+  \{B\}^{+} &= \{B,C,D\} \\
+  \{C\}^{+} &= \{C\} \\
+  \{D\}^{+} &= \{D\} \\
+  \{CD\}^{+} &= \{C,D\}
+\end{align*}
+
+So we can find the FD's in $R_{1}$ are: $B \to C$ and $B \to D$.
+
+c)
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\} \\
+  \{BC\}^{+} &= \{A,B,C,D\} \\
+  \{CD\}^{+} &= \{A,B,C,D\} \\
+  \{AD\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+No BCNF violations, Done.
+
+d)
+
+\begin{align*}
+  \{A\}^{+} &= \{A,B,C,D\} \\
+  \{B\}^{+} &= \{A,B,C,D\} \\
+  \{C\}^{+} &= \{A,B,C,D\} \\
+  \{D\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+No BCNF violations, Done.
+
+e)
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\} \\
+  \{DE\}^{+} &= \{B,C,D,E\} \\
+  \{B\}^{+}  &= \{B,D\}
+\end{align*}
+
+All three FD's violate BCNF.
+
+By choosing FD $AB \to C$, we split the relation into
+$R_{1}(A,B,C,D)$ and $R_{2}(A,B,E)$.
+
+For $R_{2}$:
+
+\begin{align*}
+  \{A\}^+ &= \{A\}, \{B\}^+ = \{B\}, \{E\}^+ = \{E\} \\
+  \{AB\}^+ &= \{A, B\}, \{BE\}^+ = \{B,E\} \\
+  \{AE\}^+ &= \{A, E\}, \{ABE\}^+ = \{A, B, E\}
+\end{align*}
+
+$R_{2}$ doesn't violate BCNF.
+
+For $R_{1}$:
+
+\begin{align*}
+  \{A\}^+ &= \{A\}, \{B\}^+ = \{B, D\}, 
+  \{C\}^+ = \{C\}, \{D\}^+ = \{D\} \\
+  \{AB\}^+ &= \{A,B,C,D\}
+\end{align*}
+
+So we can find the FD's in $R_{1}$ are: $AB \to C$,$AB \to D$
+and $B \to D$.
+
+Since $B \to D$ violates BCNF. So we again decompose $R_{1}$ into
+$R_{3}(B,D)$ and $R_{4}(A,B,C)$. Done.
+
+f)
+
+For simplicity, we only give one answer here:
+
+$$
+R_{1}(A), R_{2}(A,B), R_{3}(A,C), R_{4}(A,D), R_{5}(D,E)
+$$
+
+\subsubsection*{Exercise 3.2}
+
+For $A \to B$ and $A \to C$:
+
+$$
+\{A\}^+ = {A,B,C}
+$$
+
+We decompose $R$ into $R_{1}(A,B,C)$ and $R_{2}(A,D)$
+
+For $A \to BC$, the $\{A\}^{+}$ won't be changed. So we
+can get the same result.
+
+\subsubsection*{Exercise 3.3}
+
+Well, from Exercise 3.2, we can know that
+$\{A\}^+$ will never be changed.So we
+can get the same result.
+
+\subsubsection*{Exercise 3.4}
+
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Factory} & \textbf{Model} & \textbf{Year} \\ \hline
+    Nokia            & 3310           & 2000          \\ \hline
+    Samsung          & s3             & 2012          \\ \hline
+    Samsung          & s20            & 2020          \\ \hline
+    \end{tabular}
+  \end{table}
