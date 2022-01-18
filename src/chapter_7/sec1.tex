@@ -1,0 +1,50 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{7.1 Keys and Foreign Keys}
+
+\subsubsection*{Exercise 1.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  FOREIGN KEY (producerC#) REFERENCES MovieExec(cert#);
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  FOREIGN KEY (producerC#) REFERENCES MovieExec(cert#)
+    ON UPDATE SET NULL;
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  FOREIGN KEY (producerC#) REFERENCES MovieExec(cert#)
+    ON UPDATE SET CASCADE
+    ON DELETE SET CASCADE;
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  FOREIGN KEY (movieTitle, movieYear)
+    REFERENCES Movies(title, year);
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  FOREIGN KEY (starName) REFERENCES MovieStar(name)
+    ON DELETE CASCADE;
+\end{lstlisting}
+
+\subsubsection*{Exercise 1.2}
+
+No, A foreign key must refer to the primary key in some
+relation. But \verb|movieTitle| and \verb|movieYear|
+are not a key for \verb|StarsIn|.
+
+\end{document}
