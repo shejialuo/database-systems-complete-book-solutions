@@ -1,0 +1,83 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{7.3 Modifications of Constraints}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Movie ADD CONSTRAINT MovieKey
+    PRIMARY KEY(title, year);
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE MovieExec ADD CONSTRAINT P1
+    CHECK(name IN (SELECT producerC# FROM Movie));
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Movie ADD CONSTRAINT P2
+    CHECK(length >= 60 AND length <= 250);
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE MovieStar ADD CONSTRAINT P3
+    CHECK(name NOT IN (SELECT name FROM MovieExec));
+  ALTER TABLE MovieExec ADD CONSTRAINT P4
+    CHECK(name NOT IN (SELECT name FROM MovieStar));
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Studio ADD CONSTRAINT P5
+    UNIQUE(address);
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Classes ADD CONSTRAINT P1
+    PRIMARY KEY(class, country);
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Battles ADD CONSTRAINT P2
+    CHECK(name IN (SELECT battle FROM Outcomes));
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Ships ADD CONSTRAINT P3
+    CHECK(name in (SELECT ship FROM Outcomes));
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Classes ADD CONSTRAINT P4
+    CHECK(numGuns <= 14);
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  ALTER TABLE Battle ADD CONSTRAINT P5
+    CHECK(date NOT IN (SELECT launched FROM Ships));
+\end{lstlisting}
+
+\end{document}
