@@ -1,0 +1,111 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{3.4 Decomposition: The Good, Bad, and Ugly}
+
+\subsubsection*{Exercise 4.1}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$ & $d_{1}$ & $e_{1}$  \\
+  $a_{1}$ & $b$      & $c$ & $d$     & $e_{2}$  \\
+  $a$     & $b_{1}$  & $c$ & $d_{2}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+a)
+
+The result of chasing test is below:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$ & $b$      & $c$ & $d_{1}$ & $e_{1}$  \\
+  $a$ & $b$      & $c$ & $d$     & $e_{1}$  \\
+  $a$ & $b_{1}$  & $c$ & $d_{2}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+Therefore, the decomposition is not lossless.
+
+b)
+
+The result of chasing test is below:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$ & $b$      & $c$ & $d$     & $e$  \\
+  $a$ & $b$      & $c$ & $d$     & $e_{2}$  \\
+  $a$ & $b_{1}$  & $c$ & $d_{2}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+The first row has no subscripted symbols and the decomposition
+is lossless
+
+c)
+
+The result of chasing test is below:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$ & $d$     & $e$  \\
+  $a_{1}$ & $b$      & $c$ & $d$     & $e_{2}$  \\
+  $a$     & $b_{1}$  & $c$ & $d_{1}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+The first row has no subscripted symbols and the decomposition
+is lossless
+
+d)
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$ & $d_{1}$ & $e$  \\
+  $a_{1}$ & $b$      & $c$ & $d$     & $e_{2}$  \\
+  $a$     & $b_{1}$  & $c$ & $d_{1}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+Therefore, the decomposition is not lossless.
+
+\subsubsection*{Exercise 4.2}
+
+a)
+
+There is no relation that contain BE so this is not dependency
+preserving. $B \to E$ is not preserved.
+
+b)
+
+There is relation $\{A,C,E\}$ that contains $ACE$ so $AC \to E$
+is dependency preserving.
+
+There is relation $\{B,C,D\}$ that contains $BCD$ so $BC \to D$
+is dependency preserving.
+
+c)
+
+$A \to D$ and $D \to E$ are not preserved.
+
+d)
+
+None of the FD's is preserved.
+
+\end{document}
