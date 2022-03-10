@@ -1,0 +1,79 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{8.2 Modifying Views}
+
+\subsubsection*{Exercise 2.1}
+
+a) is updatable because it has only one table in the \verb|FROM|
+clause. Other two queries are not because they save two
+tables in \verb|FROM| clause.
+
+\subsubsection*{Exercise 2.2}
+
+a) Yes, this view is updatable.
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER DisneyComedyInsert
+  INSTEAD OF INSERT ON DisneyComedies
+  REFERENCING NEW ROW AS NewRow
+  FOR EACH ROW
+  INSERT INTO Movies(title, year, length, studioName, genre)
+  VALUES(NewRow.title, NewRow.year, NewRow.length,
+        'Disney', 'comedy');
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER DisneyComedyUpdate
+  INSTEAD OF UPDATE ON DisneyComedies
+  REFERENCING NEW ROW AS NewRow
+  FOR EACH ROW
+  UPDATE Movies SET length NewRow.length
+  where title = NewRow.title AND year = NewRow.year
+        AND studioName = 'Disney' AND genre = 'comedy';
+\end{lstlisting}
+
+\subsubsection*{Exercise 2.3}
+
+a) No, this view isn't updatable.
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER NewPCInsert
+  INSTEAD OF INSERT ON NewPC
+  REFERENCING NEW ROW AS NewRow
+  FOR EACH ROW
+  INSERT INTO Product VALUES(NewRow.maker, NewRow.model, 'pc')
+  INSERT INTO PC VALUES(NewRow.model, NewRow.speed, NewRow.ram,
+                        NewRow.hd, NewRow.price);
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER NewPCUpdatePrice
+  INSTEAD OF UPDATE ON NewPC
+  REFERENCING NEW ROW AS NewRow
+  FOR EACH ROW
+  UPDATE PC SET price NewRow.price
+  WHERE model = NewRow.model
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER NewPCDelete
+  INSTEAD OF DELETE ON NewPC
+  REFERENCING OLD ROW AS OldRow
+  FOR EACH ROW
+  DELETE FROM Product WHERE model = OldRow.model
+  DELETE FROM PC WHERE model = OldRow.model
+\end{lstlisting}
+
+\end{document}
