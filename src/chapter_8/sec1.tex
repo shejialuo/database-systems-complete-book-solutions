@@ -1,0 +1,65 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{8.1 Virtual Views}
+
+\subsubsection*{Exercise 1.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE VIEW RichExec AS
+    SELECT name, address, cert#, netWorth
+    FROM MovieExec
+    WHERE netWorth >= 10000000;
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE VIEW StudioPres AS
+    SELECT name, address, cert#
+    FROM MovieExec, Studio
+    WHERE cert# = presC#
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE VIEW
+  ExecutiveStar(name, address, gender, birthdate, cert#, netWorth) AS
+    SELECT star.name, star.address, star.gender, start.birthdate,
+           exec.cert#, exec.netWorth
+    FROM MovieStar star, MovieExec exec
+    WHERE star.name = exec.name AND star.address = exec.address
+\end{lstlisting}
+
+\subsubsection*{Exercise 1.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  SELECT name
+  FROM ExecutiveStar
+  WHERE gender = 'F'
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SELECT RichExec.name
+  FROM RichExec, StudioPres
+  WHERE RichExec.name = StudioPres.name
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  SELECT ExecutiveStar.name
+  FROM ExecutiveStar, StudioPres
+  WHERE ExecutiveStar.netWorth >= 50000000 AND
+        ExecutiveStar.name = StudioPres.name
+\end{lstlisting}
+
+\end{document}
