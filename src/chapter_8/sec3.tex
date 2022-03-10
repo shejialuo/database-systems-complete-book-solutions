@@ -1,0 +1,25 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{8.3 Indexes in SQL}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE INDEX StudioNameIndex ON Studio(name);
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE INDEX MovieExecAddress ON MovieExec(address);
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE INDEX MovieInfoIndex on Movies(genre, length);
+\end{lstlisting}
+
+\end{document}
