@@ -28,7 +28,27 @@ b)
 c)
 
 \begin{lstlisting}[language=sql]
+  SELECT presC#
+  FROM Studio, MovieExec
+  WHERE Studio.name = 'MGM' AND presC# = cert#
+\end{lstlisting}
 
+d)
+
+\begin{lstlisting}[language=sql]
+  SELECT Movie1.title
+  FROM Movies Movie1, Movies Movie2
+  WHERE Movie2.title = 'Gone With the Wind'
+        AND Movie1.length > Movie2.length
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  SELECT Exec1.name
+  FROM MovieExec Exec1, MovieExec Exec2
+  WHERE Exec2.name = 'Merv Griffin'
+        AND Exec1.netWorth > Exec2.netWorth
 \end{lstlisting}
 
 \subsubsection*{Exercise 2.2}
