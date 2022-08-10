@@ -1,0 +1,161 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{3.5 Third Normal Form}
+
+\subsubsection*{Exercise 5.1}
+
+a)
+
+We first find all the keys.
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\} \\
+  \{BD\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+Thus we can get the primes are $\{A, B, D\}$. For $AB \to C$,
+$AB$ is the key itself. And for $C \to D$ and $D \to A$, the
+right side consists of prime attributes. It is in 3NF.
+
+b)
+
+We first find all the keys.
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+Thus we can get the primes are $\{A, B\}$. For $B \to C$
+and $B \to D$. $B$ is not the superkey. And neither the rights
+sides consist of prime attributes. Thus it violates 3NF.
+
+Make relation $R_{1}(A,B)$ and $R_{2}(B,C,D)$ in which B is candidate key.
+
+c)
+
+We first find all the keys.
+
+\begin{align*}
+  \{AB\}^{+} &= \{A,B,C,D\} \\
+  \{BC\}^{+} &= \{A,B,C,D\} \\
+  \{CD\}^{+} &= \{A,B,C,D\} \\
+  \{AD\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+Thus we can get the primes are $\{A, B, C, D\}$. In all FDs, left side
+is a key. It is in 3NF.
+
+d)
+
+We first find all the keys.
+
+\begin{align*}
+  \{A\}^{+} &= \{A,B,C,D\} \\
+  \{B\}^{+} &= \{A,B,C,D\} \\
+  \{C\}^{+} &= \{A,B,C,D\} \\
+  \{D\}^{+} &= \{A,B,C,D\}
+\end{align*}
+
+In all FDs, left side is a key. It is 3NF.
+
+e)
+
+We first find all the keys.
+
+\begin{align*}
+  \{ABE\}^{+} &= \{A,B,C,D,E\}
+\end{align*}
+
+Thus we can get the primes are $\{A, B, E\}$. For $B \to C$
+It obviously violates 3NF
+
+Make relation $R_{1}(A,B,C,D)$, $R_{2}(D, E, C)$ and $R_{3}(A, B, E)$
+
+f)
+
+For simplicity, we only give one answer here:
+
+$R_{1}(A,B,C,D)$ and $R_{2}(D, E, B)$
+
+\subsubsection*{Exercise 5.2}
+
+a)
+
+Key for the relation Courses is $HS$.
+
+b)
+
+FD's are already minimal basis, as no attributes can be removed
+from the left side, right side is having only single
+attributes and none of the FDcan be removed as given in the question.
+
+c)
+
+By using the 3NF synthesis algorithm, the final set of relations obtained will
+be $CT$, $HRC$, $HTR$, $HSR$, $CSG$ . All the relations are in BCNF.
+
+
+\subsubsection*{Exercise 5.3}
+
+a)
+
+Key for the relation Courses is $IS$.
+
+b)
+
+The given set of FD's are the minimal basis.
+
+c)
+
+The final set of decomposed relations is
+$SD$, $IB$, $ISQ$ and $BO$.
+
+\subsubsection*{Exercise 5.4}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$     & $d_{1}$ & $e_{1}$  \\
+  $a$     & $b_{2}$  & $c_{2}$ & $d$     & $e_{2}$  \\
+  $a$     & $b$      & $c_{3}$ & $d_{3}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+For $AB \to C$ and $C \to B$, we can get
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$     & $d_{1}$ & $e_{1}$  \\
+  $a$     & $b_{2}$  & $c_{2}$ & $d$     & $e_{2}$  \\
+  $a$     & $b$      & $c$     & $d_{3}$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+For $A \to D$, we can get
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lllll@{}}
+  \toprule
+  A & B & C & D & E \\ \midrule
+  $a$     & $b$      & $c$     & $d$ & $e_{1}$  \\
+  $a$     & $b_{2}$  & $c_{2}$ & $d$ & $e_{2}$  \\
+  $a$     & $b$      & $c$     & $d$ & $e$      \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+This decomposition is lossless.
+
+\subsubsection*{Exercise 5.5}
+
+% TODO: Need help
+Need help
+
+\end{document}
