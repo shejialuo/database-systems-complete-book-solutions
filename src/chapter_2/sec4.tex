@@ -34,7 +34,7 @@ c)
 d)
 
 \begin{align*}
-  R1 &:= \sigma_{color=true AND type=layser}(Printer) \\
+  R1 &:= \sigma_{color=true \ \mathbf{AND} \ type=layser}(Printer) \\
   R2 &:= \pi_{model}(R1)
 \end{align*}
 
@@ -51,39 +51,49 @@ f)
 \begin{align*}
   R1 &:= \rho_{PC1}(PC) \\
   R2 &:= \rho_{PC2}(PC) \\
-  R3 &:= R1 \bowtie_{PC1.hd = PC2.hd AND PC1.model <> PC2.model} R2 \\
+  R3 &:= R1 \bowtie_{PC1.hd = PC2.hd \ \mathbf{AND} \ PC1.model <> PC2.model} R2 \\
   R4 &:= \pi_{hd}(R3)
 \end{align*}
 
 g)
 
 The most important thing here is to notice that \emph{a pair
-should be listed only once}. Here we use \verb|PC1.model < PC.model|
+should be listed only once}. Here we use \verb|PC1.model < PC2.model|
 to achieve this functionality.
 
 \begin{align*}
   R1 &:= \rho_{PC1}(PC) \\
   R2 &:= \rho_{PC2}(PC) \\
-  R3 &:= R1 \bowtie_{PC1.speed = PC2.speed AND PC1.ram =
-         P2.ram and PC1.model < PC2.model} R2
+  R3 &:= R1 \bowtie_{PC1.speed = PC2.speed \ \mathbf{AND} \ PC1.ram =
+         P2.ram \ \mathbf{AND} \ PC1.model < PC2.model} R2
 \end{align*}
 
 h)
 
 \begin{align*}
   R1 &:= \pi_{model}(\sigma_{speed \geq 2.80}(PC))
-  \cup \pi_{model}(\sigma_{speed \geq 2.80}(PC)) \\
+  \cup \pi_{model}(\sigma_{speed \geq 2.80}(Laptop)) \\
   R2 &:= \pi_{maker, model}(R1 \bowtie Product) \\
   R3 &:= \rho_{R3(maker2, model2)}(R2) \\
-  R4 &:= R2 \bowtie_{maker = maker2 AND model <> model2} R3 \\
+  R4 &:= R2 \bowtie_{maker = maker2 \ \mathbf{AND} \ model <> model2} R3 \\
   R5 &:= \pi_{maker}(R4)
 \end{align*}
 
 i)
 
+The most tricky thing is to understand how to find the way to get
+the maximum. In C, we could use a temp variable to record the
+current maximum in the loop. However, we cannot do that using relation
+algebra.
+
+Here, I give an example, suppose we have an only one attribute relation
+$A$. For simplicity, I choose $A = (a_{1}, \cdots, a_{n})^T$. I do the
+cartesian product. If there is a maximum $n$, we could get that
+for all $a_{i}, i = 1, \dots, n, n \geq a_{i}$. Then idea comes.
+
 \begin{align*}
   R1 &:= \pi_{model, speed}(PC) \\
-  R2 &:= \pi_{model, speed}(PC) \\
+  R2 &:= \pi_{model, speed}(Laptop) \\
   R3 &:= R1 \cup R2 \\
   R4 &:= \rho_{R4(model2, speed2)}(R3) \\
   R5 &:= \pi_{model, speed}(R3 \bowtie_{speed < speed2} R4) \\
@@ -97,9 +107,9 @@ j)
   R1 &:= \pi_{maker, speed}(PC \bowtie Product) \\
   R2 &:= \rho_{R2(maker2, speed2)}(R1) \\
   R3 &:= \rho_{R3(maker3, speed3)}(R1) \\
-  R4 &:= R1 \bowtie_{maker = maker2 AND speed <> speed2} R2 \\
-  R5 &:= R4 \bowtie_{maker = maker3 AND speed3 <> speed2
-         AND speed3 <> speed} R3 \\
+  R4 &:= R1 \bowtie_{maker = maker2 \ \mathbf{AND} \ speed <> speed2} R2 \\
+  R5 &:= R4 \bowtie_{maker = maker3 \ \mathbf{AND} \ speed3 <> speed2
+         \ \mathbf{AND} \ speed3 <> speed} R3 \\
   R6 &:= \pi_{maker}(R5)
 \end{align*}
 
@@ -110,11 +120,11 @@ k)
   R2 &:= \rho_{R2(maker2, model2)}(R1) \\
   R3 &:= \rho_{R3(maker3, model3)}(R1) \\
   R4 &:= \rho_{R4(maker4, model4)}(R1) \\
-  R5 &:= R1 \bowtie_{maker=maker2 AND model <> model2} R2 \\
-  R6 &:= R3 \bowtie_{maker=maker3 AND model3 <> model2
-         AND model3 <> model}R5 \\
-  R7 &:= R4 \bowtie_{maker4=maker AND (model4 = model OR
-         model4 = model2 OR model4 = model3)} R6 \\
+  R5 &:= R1 \bowtie_{maker=maker2 \ \mathbf{AND} \ model <> model2} R2 \\
+  R6 &:= R3 \bowtie_{maker=maker3 \ \mathbf{AND} \ model3 <> model2
+         \ \mathbf{AND} \ model3 <> model}R5 \\
+  R7 &:= R4 \bowtie_{maker4=maker \ \mathbf{AND} \ (model4 = model \ \mathbf{OR} \
+         model4 = model2 \ \mathbf{OR} \ model4 = model3)} R6 \\
   R8 &:= \pi_{maker}(R7)
 \end{align*}
 
@@ -143,7 +153,7 @@ b)
 c)
 
 \begin{align*}
-  R1 &:= \sigma_{battle=DenmarkStrait AND result=sunk}
+  R1 &:= \sigma_{battle=DenmarkStrait \ \mathbf{AND} \ result=sunk}
          (Outcomes) \\
   R2 &:= \pi_{ship}(R1)
 \end{align*}
@@ -151,7 +161,7 @@ c)
 d)
 
 \begin{align*}
-  R1 &:= Classes \bowtie_{launched > 1921 AND
+  R1 &:= Classes \bowtie_{launched > 1921 \ \mathbf{AND} \
          displacement > 35000} Ships \\
   R2 &:= \pi_{name}(R1)
 \end{align*}
@@ -195,8 +205,8 @@ i)
   R1 &:= \pi_{ship, result, date}(Battles
          \bowtie_{battle = name} Outcomes) \\
   R2 &:= \rho(R2(ship, result, date))(R1) \\
-  R3 &:= \pi_{ship}(R1 \bowtie_{ship = ship2 AND
-         result = danamaged AND date < date2} R2)
+  R3 &:= \pi_{ship}(R1 \bowtie_{ship = ship2 \ \mathbf{AND} \
+         result = damaged \ \mathbf{AND} \ date < date2} R2)
 \end{align*}
 
 \subsubsection*{Exercise 4.4}
@@ -265,7 +275,7 @@ d)
 
 \begin{itemize}
   \item $\pi_{1\dots n}(R \bowtie S)$
-  \item $\pi_{1\dots n}(\sigma_{R.1=S.1 
+  \item $\pi_{1\dots n}(\sigma_{R.1=S.1
         \dots R.K=S.K}(R \times S))$
   \item $R \bowtie_{1, \dots k}(S)$
 \end{itemize}
@@ -279,5 +289,5 @@ $R - \pi_{1,\dots,n}(R \bowtie S)$
 An intuitive property of the division operator of
 the relational algebra is simply that it is the inverse
 of the cartesian product.
-  
+
 \end{document}

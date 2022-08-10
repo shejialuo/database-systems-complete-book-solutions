@@ -9,13 +9,13 @@
 a)
 
 $$
-\sigma_{speed < 2.00 AND price > 500} = \emptyset
+\sigma_{speed < 2.00 \ \mathbf{AND} \ price > 500} = \emptyset
 $$
 
 b)
 
 $$
-\sigma_{screen < 15.4 AND hd < 100 AND
+\sigma_{screen < 15.4 \ \mathbf{AND} \ hd < 100 \ \mathbf{AND} \
 price \geq 1000}(Laptop) = \emptyset$$
 
 c)
@@ -31,7 +31,7 @@ d)
 \begin{align*}
   R1 &:= \pi_{maker, model, speed}(Product \bowtie PC) \\
   R2 &:= \pi_{maker, speed}(Product \bowtie Laptop) \\
-  R3 &:= \pi_{model}(R1 \bowtie_{R1.maker=R2.maker AND 
+  R3 &:= \pi_{model}(R1 \bowtie_{R1.maker=R2.maker \ \mathbf{AND} \
          R1.speed > R2.speed} R2) \\
   R4 &:= \pi_{model}(R3) = \emptyset
 \end{align*}
@@ -46,7 +46,7 @@ e)
 And we can get constraints such that
 
 $$
-R1 \bowtie_{R2.ram > R1.ram AND
+R1 \bowtie_{R2.ram > R1.ram \ \mathbf{AND} \
 R2.price \leq R1.price} R2 = \emptyset
 $$
 
@@ -63,7 +63,7 @@ b)
 
 $$
 \pi_{Class}(\sigma_{bore > 16
-AND numGuns > 9}(Classes))= \emptyset
+\ \mathbf{AND} \ numGuns > 9}(Classes))= \emptyset
 $$
 
 c)
@@ -87,9 +87,9 @@ e)
   R1 &:= \sigma_{numGuns > 9}(Classes) \\
   R2 &:= \sigma_{numGuns < 9}(Classes) \\
   R3 &:= (R1 \bowtie Ships) \bowtie Battles \\
-  R4 &:= (R2 \bowtie Ships) \bowtie 
+  R4 &:= (R2 \bowtie Ships) \bowtie
          \sigma_{result=sunk}(Battles) \\
-  R5 &:= \pi_{battlename}(R3) \bowtie 
+  R5 &:= \pi_{battlename}(R3) \bowtie
          \pi_{battlename}(R4) = \emptyset
 \end{align*}
 
@@ -105,5 +105,5 @@ $$
 If we have 3 relational-algebra expressions for example
 $E1$, $E2$ and $E3$ we can not express them like
 $E1 =E2 = E3$. Thus, the answer is no.
-  
+
 \end{document}
