@@ -6,3 +6,4 @@
 *.fdb_latexmk
 *.out
 *.fls
+build/
