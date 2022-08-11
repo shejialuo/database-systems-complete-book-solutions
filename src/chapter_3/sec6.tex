@@ -1,0 +1,93 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{3.6 Multivalued Dependencies}
+
+\subsubsection*{Exercise 6.1}
+
+we can pair the $B$-value from any tuple with the
+value of the remaining attribute C from any other
+tuple.
+
+Thus the tuples $(a, b_{1}, c_{2})$, $(a, b_{1}, c_{3})$,
+$(a, b_{2}, c_{1})$, $(a, b_{2}, c_{3})$, $(a, b_{3}, c_{1})$,
+and $a, b_{3}, c_{2}$ are also in $R$.
+
+\subsubsection*{Exercise 6.2}
+
+a)
+
+From the description, we can get the following FD.
+
+\begin{align*}
+  S & \to NB \\
+  CS & \to CN \\
+  CS & \to CB \\
+  AS & \to AM
+\end{align*}
+
+Also, we can get the following MVD.
+
+\begin{align*}
+  S & \twoheadrightarrow NB \\
+  S & \twoheadrightarrow AS \\
+  S & \twoheadrightarrow am
+\end{align*}
+
+b)
+
+\begin{itemize}
+  \item $R_{1}(S, CS, A)$
+  \item $R_{2}(S,N,B)$
+  \item $R_{2}(CS,CN,B)$
+  \item $R_{4}(AS, M)$
+\end{itemize}
+
+\subsubsection*{Exercise 6.3}
+
+a)
+
+Left side is not a key and holds more than one MVD
+so it violates 4NF.
+
+We could decompose $R$ into $R_{1}(A, B)$, $R_{2}(A, C)$
+and $R_{3}(A, D)$.
+
+b)
+
+For $B \twoheadrightarrow CD$, left side is not a key. So it
+violates 4NF.
+
+We could decompose $R$ into $R_{1}(A, B)$, $R_{2}(B, C, D)$.
+
+c)
+
+For $B \twoheadrightarrow D$, left side is not a key. It violates
+4NF.
+
+We could decompose $R$ into $R_{1}(A, B, C)$, $R_{2}(B, D)$.
+
+d)
+
+We could easily calculate $\{A\}^{+} = {A, B, C, D, E}$. So
+all the left sides are keys. so it is in 4NF.
+
+\subsubsection*{Exercise 6.4}
+
+We have five attributes $(name, street, city, title, year)$
+
+\begin{itemize}
+  \item City is not determined by other four attributes as there
+        can be same street address with different city.
+  \item Year is not determined as there can be different address
+        of one star.
+  \item Title is not determines as with two same movie, different
+        address is present.
+  \item Street is not determined as with two same title, street is different.
+  \item Name is not determined as with two same year and same movie star have different address.
+\end{itemize}
+
+None of the five attributes is determined by other four.
+
+\end{document}
