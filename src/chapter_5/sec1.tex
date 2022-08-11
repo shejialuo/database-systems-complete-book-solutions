@@ -1,0 +1,164 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{5.1 Relational Operations on Bags}
+
+\subsubsection*{Exercise 1.1}
+
+For simplicity, we assume that $R$ has $r$ tuples, $S$ has
+$t$ tuples and $T$ has $t$ tuples.
+
+a)
+
+For a bag:
+
+\begin{align*}
+  \mbox{Tuples}((R \cup S) \cup T) &= (r + s) + t = r + s + t \\
+  \mbox{Tuples}(R \cup (S \cup T)) &= r + (s + t) = r + s + t
+\end{align*}
+
+For a set:
+
+Each set can have a tuple only once. If each set has a
+common tuple then the result will have the single occurrence.
+
+b)
+
+\begin{align*}
+  \mbox{Tuples}((R \cap S) \cap T) &= \min(\min(r, s), t) \\
+  \mbox{Tuples}(R \cap (S \cap T)) &= \min(r, \min(s, t))
+\end{align*}
+
+
+Bags are essentially sets that allow the appearance of a
+tuple more than once. In this case the operations on
+a bag and set yield the same results.
+
+c)
+
+We let $R = \{a, b\}, S = \{b, c\}, T = \{c, d\}$.
+
+\begin{align*}
+  (R \bowtie S) \bowtie T &=
+    (\{a, b\} \bowtie \{b, c\}) \bowtie \{c, d\} = \{a, b, c, d\} \\
+  R \bowtie (S \bowtie T) &=
+    \{a, b\} \bowtie (\{b, c\} \bowtie \{c, d\}) = \{a, b, c, d\}
+\end{align*}
+
+d)
+
+For a bag:
+
+Suppose a tuple $t$ occurs $n$ and $m$ times in $R$ and $S$
+respectively. The union of these two bags in the bag $R \cup S$,
+tuple $t$ would appear $n+m$ times. The union of these two bags
+in the bag $S \cup R$ tuple $t$ would appear $m+n$ times.
+Both sides of the relation yield the same result.
+
+For a set:
+
+In a set a tuple can only appear at most one time. Tuple $t$
+might appear in set $R$ and $S$ $1$ or $0$ times. The
+combinations of number of occurrences for tuple $t$
+in $R$ and $S$ respectively are $(0,0), (0,1), (1,0)$,
+and $(1,1)$. The union of either one of these
+combinations on the right or left side of the relation
+would yield the same result.
+
+e)
+
+For a bag:
+
+Suppose a tuple $t$ occurs $n$ and $m$ times in $R$ and $S$
+respectively. The intersection of these two bags in the bag $R \cap S$,
+tuple $t$ would appear $\min(n, m)$ times. The intersection
+of these two bags in the bag $S \cap R$ tuple $t$ would appear
+$\min(n, m)$ times. Both sides of the relation yield the same result.
+
+For a set:
+
+In a set a tuple can only appear at most one time. Tuple $t$
+might appear in set $R$ and $S$ $1$ or $0$ times. The
+combinations of number of occurrences for tuple $t$
+in $R$ and $S$ respectively are $(0,0), (0,1), (1,0)$,
+and $(1,1)$. The intersection of either one of these
+combinations on the right or left side of the relation
+would yield the same result.
+
+f)
+
+We let $R = \{a, b\}, S = \{b, c\}$.
+
+\begin{align*}
+  R \bowtie S &= \{a, b\} \bowtie \{b, c\} = \{a, b, c\} \\
+  S \bowtie R &= \{b, c\} \bowtie \{a, b\} = \{a, b, c\}
+\end{align*}
+
+g)
+
+On left side we have projection and on the right we
+have two projections. Union of the right side is
+the same result as the left side. They have
+same condition ($L$) to project.
+
+h)
+
+For a bag:
+
+Let $R = \{x\}, S= \{x\}, T = \{x\}$
+
+\begin{align*}
+  R \cup (S \cap T) &=
+    \{x\} \cup (\{x\} \cap \{x\}) = \{x, x\}\\
+  (R \cup S) \cap (R \cup T) &=
+    (\{x\} \cup \{x\}) \cap (\{x\} \cup \{x\}) = \{x, x\}
+\end{align*}
+
+For a set:
+
+From set theory we can know that it holds for set.
+
+i)
+
+Does \textbf{not} hold for sets and bags. Left side when
+the query executes can not be the same with the right side.
+On right side we have two expressions and those two can
+have some common tuples, nothing else. Let's take into
+account that conditions $C$ and $D$ are not the same.
+
+\subsubsection*{Exercise 1.2}
+
+a)
+
+Let $R = \{x\}, S= \{x, x\}, T = \{x\}$
+
+\begin{align*}
+  (R \cap S) - T) &=
+    (\{x\} \cap \{x, x\}) - \{x\} = \emptyset\\
+  R \cap (S - T) &=
+    \{x\} \cap (\{x, x\} - \{x\}) = \{x\}
+\end{align*}
+
+b)
+
+Let $R = \{x\}, S= \{x, x\}, T = \{x\}$
+
+\begin{align*}
+  R \cap (S \cup T) &=
+    \{x\} \cap (\{x, x\} \cup \{x\}) = \{x\}\\
+  (R \cap S) \cup (R \cap T) &=
+    (\{x\} \cup \{x, x\}) \cap (\{x\} \cup \{x\}) = \{x, x\}
+\end{align*}
+
+c)
+
+It holds for sets because \textbf{selection} on the left side
+with condition OR will give the same result with the
+\textbf{union} and situation on the right side.
+
+Bags are unordered collection of elements \textbf{with elements}.
+Because of that, bags behave differently. And this example does
+\textbf{not} hold for bags.
+
+\end{document}
