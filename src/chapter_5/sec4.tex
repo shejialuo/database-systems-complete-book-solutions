@@ -1,0 +1,150 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{5.4 Relational Algebra and Datalog}
+
+\subsubsection*{Exercise 4.1}
+
+a)
+
+\begin{align*}
+  U(a, b, c) &\leftarrow R(a, b, c) \\
+  U(a, b, c) &\leftarrow S(a, b, c)
+\end{align*}
+
+b)
+
+$$
+I(a, b, c) \leftarrow R(a, b, c) \ \mathbf{AND} \ S(a, b, c)
+$$
+
+c)
+
+$$
+D(a, b , c) \leftarrow R(a, b, c) \ \mathbf{AND \ NOT} \ S(a, b, c)
+$$
+
+d)
+
+\begin{align*}
+  X(a, b, c) &\leftarrow R(a, b, c) \ \mathbf{AND \ NOT} \ T(a, b, c) \\
+  X(a, b, c) &\leftarrow S(a, b, c) \ \mathbf{AND \ NOT} \ T(a, b, c)
+\end{align*}
+
+e)
+
+\begin{align*}
+  X(a, b, c) &\leftarrow R(a, b, c) \ \mathbf{AND \ NOT} \ S(a, b, c) \\
+  Y(a, b, c) &\leftarrow R(a, b, c) \ \mathbf{AND \ NOT} \ T(a, b, c) \\
+  D(a, b, c) &\leftarrow X(a, b, c) \ \mathbf{AND} \ Y(a, b, c)
+\end{align*}
+
+f)
+
+$$
+P(a, b) \leftarrow R(a, b, c)
+$$
+
+g)
+
+\begin{align*}
+  X(a, b) &\leftarrow R(a, b, c)\\
+  Y(b, c) &\leftarrow S(a, b, c) \\
+  Y(a, b) &\leftarrow Y(b, c) \\
+  Z(a, b) &\leftarrow X(a, b) \ \mathbf{AND} \ Y(a, b)
+\end{align*}
+
+\subsubsection*{Exercise 4.2}
+
+a)
+
+$$
+A(x, y, z) \leftarrow R(x, y, z) \ \mathbf{AND} \ x = y
+$$
+
+b)
+
+$$
+A(x, y, z) \leftarrow R(x, y, z) \ \mathbf{AND} \ x < y
+  \ \mathbf{AND} \ y < z
+$$
+
+c)
+
+$$
+A(x, y, z) \leftarrow R(x, y, z) \ \mathbf{AND} (\ x < y
+  \ \mathbf{OR} \ y < z)
+$$
+
+d)
+
+$$
+  A(x, y, z) \leftarrow R(x, y, z) \ \mathbf{AND} \ x != y
+$$
+
+e)
+
+\begin{align*}
+  A(x, y, z) &\leftarrow R(x, y, z) \ \mathbf{AND} \ x > y
+    \ \mathbf{OR} \ y > z \\
+  A(x, y, z) &\leftarrow R(x, y, z) \ \mathbf{AND} \ x < y
+    \ \mathbf{OR} \ y > z
+\end{align*}
+
+f)
+
+\begin{align*}
+  A(x, y, z) &\leftarrow R(x, y, z) \ \mathbf{AND} \ x > y
+    \ \mathbf{OR} \ y > z \\
+  A(x, y, z) &\leftarrow R(x, y, z) \ \mathbf{AND} \ x > z
+    \ \mathbf{OR} \ y > z
+\end{align*}
+
+\subsubsection*{Exercise 4.3}
+
+a)
+
+$$
+J(a, b, c, d) \leftarrow R(a, b, c) \ \mathbf{AND} \ S(b, c, d)
+$$
+
+b)
+
+$$
+J(b, c, d, e) \leftarrow S(b, c, d) \ \mathbf{AND} \ T(d, e)
+$$
+
+c)
+
+$$
+J(a, b, c, d, e) \leftarrow R(a, b, c) \ \mathbf{AND} \ T(d, e)
+\ \mathbf{AND} \ S(b, c, d) \ \mathbf{AND} \ T(d, e)
+$$
+
+\subsubsection*{Exercise 4.4}
+
+Well, the process is the same as Exercise 4.2 above. Just add an extra
+$\mathbf{AND}$ operation. Omit here.
+
+\subsubsection*{Exercise 4.5}
+
+a)
+
+$$
+\pi_{x, y}(Q \bowtie R)
+$$
+
+b)
+
+$$
+\pi_{x, y}(Q)
+$$
+
+c)
+
+$$
+\pi_{x, y}(Q \bowtie_{x < y} R)
+$$
+
+\end{document}
