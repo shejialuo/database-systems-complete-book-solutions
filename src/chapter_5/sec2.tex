@@ -1,0 +1,148 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{5.2 Extended Operators of Relational Algebra}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+$$
+\pi_{A + B, A^2, B^2}(R) = \{(1, 0, 1), (5, 4, 9),
+  (1, 0, 1), (6, 4, 16), (7, 9, 16)\}
+$$
+
+b)
+
+$$
+\pi_{B + 1, C - 1}(S) = \{(1, 0), (3, 3), (3, 4),
+  (4, 3), (1, 1), (4, 3)\}
+$$
+
+c)
+
+$$
+\tau_{B, A}(R) = \{(0, 1), (0, 1), (2, 3),
+  (2, 4), (3, 4)\}
+$$
+
+d)
+
+$$
+\tau_{B, C}(S) = \{(0, 1), (0, 2), (2, 4),
+  (2, 5), (3, 4), (3, 4)\}
+$$
+
+e)
+
+$$
+\delta(R) = \{(0, 1), (2, 3), (2, 4), (3, 4)\}
+$$
+
+f)
+
+$$
+\delta(S) = \{(0, 1), (2, 4), (2, 5),
+  (3, 4), (0, 2)\}
+$$
+
+g)
+
+$$
+\gamma_{A, \mathbf{SUM}(B)}(R) = \{(0, 2), (2, 7),
+  (3, 4)\}
+$$
+
+h)
+
+$$
+\gamma_{B, \mathbf{AVG}(C)}(R) = \{(0, 1.5), (2, 4.5),
+  (3, 4)\}
+$$
+
+i)
+
+$$
+\gamma_{A}(R) = \{(0), (2), (3)\}
+$$
+
+j)
+
+\begin{align*}
+  R \bowtie S &= \{(2, 3 , 4)\} \\
+  \gamma_{A, \mathbf{MAX}(C)}(R \bowtie S) &= \{(2, 4)\}
+\end{align*}
+
+k)
+
+$$
+R \overset{\circ}{\bowtie}_{L} S = \{(0, 1, \bot),
+  (0, 1, \bot), (2, 3, 4), (2, 4, \bot), (3, 4, \bot)\}
+$$
+
+l)
+
+$$
+R \overset{\circ}{\bowtie}_{R} S = \{(\bot, 0 , 1),
+  (\bot, 2 , 4), (\bot, 2, 5), (2, 3, 4), (\bot, 0, 2),
+  (\bot, 3, 4)\}
+$$
+
+m)
+
+Combine above k) and l)
+
+n)
+
+\begin{align*}
+  R \overset{\circ}{\bowtie}_{R.B < S.B} S = \{&(0, 1, 2, 4),
+    (0, 1, 2, 5), (0, 1, 3, 4), (0, 1, 3, 4), \\
+    &(0, 1, 2, 4), (0, 1, 2, 5), (0, 1, 3, 4), (0, 1, 3, 4), \\
+    &(2, 3, \bot, \bot), (2, 4, \bot, \bot), (3 ,4, \bot, \bot), \\
+    &(\bot, \bot, 0, 1), (\bot, \bot, 0, 2)\}
+\end{align*}
+
+\subsubsection*{Exercise 2.2}
+
+a)
+
+We use $R$ to represent the relation. For $\delta(R)$, there
+is no duplicates. So for $\delta(\delta(R))$, the effect is none.
+So $\delta(R) = \delta(\delta(R))$. And it is \emph{idempotent}
+
+b)
+
+It is \emph{idempotent}, because when we repeat the projection
+it will yield the same relation.
+
+c)
+
+The result of $\sigma_{C}(R)$ is a relation where meets $C$.
+Repeating the selection will yield the same results because
+the relation already satisfy $C$. So it is \emph{idempotent}.
+
+
+
+d)
+
+The result is a relation whose schema consists of the grouping
+attributes and the aggregated attributes. It is
+\emph{not idempotent}.
+
+e)
+
+The result is sorted list of tuples based on some attributes $L$.
+It is \emph{not idempotent}.
+
+\subsubsection*{Exercise 2.3}
+
+We could use classical relational algebra by the following operations.
+
+\begin{align*}
+  R1 &:= \rho_{A1, B1}(R) \\
+  R2 &:= R1 \bowtie_{A = A1} R \\
+  R3 &:= \pi_{A, A1}(R2)
+\end{align*}
+
+\end{document}
