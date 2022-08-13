@@ -1,0 +1,37 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{6.4 Full-Relation Operations}
+
+\subsubsection*{Exercise 4.1}
+
+%TODO:
+
+Need help
+
+\subsubsection*{Exercise 4.2}
+
+%TODO:
+
+Need help
+
+\subsubsection*{Exercise 4.3}
+
+\begin{lstlisting}[language=sql]
+  SELECT starName, MIN(year) AS minYear, COUNT(title) AS ctTitle
+  FROM starsIn
+  WHERE ctTitle > 3 GROUP BY starName;
+\end{lstlisting}
+
+\subsubsection*{Exercise 4.4}
+
+It is possible! In the $\gamma$, we need to produce all the aggregations
+that the \verb|HAVING| clause uses. Then, we can follow the $\gamma$
+by a $\sigma$ that eliminated from the result of the $\gamma$
+the tuples that correspond to the groups that the \verb|HAVING| would eliminate.
+Finally, we use $\pi$ to get rid of the extra aggregations that
+were used only by the \verb|HAVING| clause.
+
+
+\end{document}
