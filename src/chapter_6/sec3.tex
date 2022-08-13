@@ -1,0 +1,123 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{6.3 Subqueries}
+
+\subsubsection*{Exercise 3.1}
+
+\begin{lstlisting}[language=sql]
+  SELECT title
+  FROM Movies Old
+  WHERE Movies.year < Old.year AND Movies.title = Old.title;
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.2}
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+        (SELECT R1 FROM L) AS a
+        (SELECT R2 FROM L) AS b
+        ...
+  FROM L;
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.3}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  SELECT name, address
+  FROM MovieStar
+  WHERE gender = 'F' AND (name address) IN
+    (SELECT name, address
+     FROM MovieExec
+     WHERE netWorth > 1 100000000);
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SELECT name, address
+  FROM MovieStar
+  WHERE (name address) NOT IN
+    (SELECT name, address
+     FROM MovieExec);
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.4}
+
+We could user \verb|EXCEPT| to replace \verb|EXISTS|.
+
+\subsubsection*{Exercise 3.5}
+
+a)
+
+\begin{itemize}
+  \item Studio.name
+  \item Studio.address
+  \item presC\#
+  \item MovieExec.name
+  \item MovieExec.address
+  \item cert\#
+  \item netWorth
+\end{itemize}
+
+b)
+
+\begin{itemize}
+  \item movieTitle
+  \item movieYear
+  \item starName
+  \item name
+  \item ADDRESS
+  \item gender
+  \item birthdate
+\end{itemize}
+
+c)
+
+\begin{itemize}
+  \item movieTitle
+  \item movieYear
+  \item starName
+  \item name
+  \item ADDRESS
+  \item gender
+  \item birthdate
+\end{itemize}
+
+\subsubsection*{Exercise 3.6}
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+  FROM (PC FULL NATURAL OUTER JOIN Laptop
+        FULL NATURAL JOIN Printer) AS allProduct
+        LEFT OUTER JOIN Product ON Product.model = allProduct.model
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.7}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+  FROM R.key = S.key
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+  FROM R, S
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  SELECT *
+  FROM R, S
+  where C
+\end{lstlisting}
+
+\end{document}
