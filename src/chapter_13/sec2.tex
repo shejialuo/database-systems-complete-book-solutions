@@ -1,0 +1,123 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{13.2 Disks}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+$$
+10 \times 100000 \times 1000 \times 1024 \approx≈ 1 \mathbf{Tbytes}
+$$
+
+b)
+
+$$
+1000 \times 1024 \times 8 / (3.5 \times 3.14 \times 0.8)\ approx 0.89
+$$
+
+c)
+
+$$
+1 + 100000 \times 0.0002 = 21
+$$
+
+d)
+
+$$
+10000 \ \mathbf{rpm} \to 167 \ \mathbf{rps} \to 6 \ \mathbf{ms \ per \ rotation}
+$$
+
+e)
+
+$$
+6 \times \frac{64 \times 0.288^{\circ}  + 63 \times 0.072^{\circ}}{360^{\circ}} = 0.3828 \ \mathbf{ms}
+$$
+
+f)
+
+$$
+1 + (0.0002 \times 100000 / 3)=7.67 \ \mathbf{ms}
+$$
+
+g)
+
+$$
+6 / 2 = 3 \ \mathbf{ms}
+$$
+
+\subsubsection*{Exercise 2.2}
+
+We first need to calculate the average number of cylinders:
+
+$$
+\frac{\frac{8192^2}{2} + \frac{57344^2}{2}}{65536} = 25600
+$$
+
+And then we could calculate:
+
+$$
+1 + 0.00025 \times 25600 + 4.17 + 0.13 = 11.7 \ \mathbf{ms}
+$$
+
+\subsubsection*{Exercise 2.3}
+
+When the head of the disk is located at the first cylinder, average
+distance moved by head is
+
+$$
+\frac{1 + 2 + 3  + \cdots + 65535}{65536}
+$$
+
+When the head of the disk is located at the second cylinder, average
+distance moved by head is:
+
+$$
+\frac{1 + 1 + 2 + 3  + \cdots + 65534}{65536}
+$$
+
+Thus for any distance when the head is located at first cylinder all
+the sums are 0 and sum of distances for all cylinders will be
+$(1 + 2 + 3 + \cdots + N - 1)$. For any distance, when head is
+located at second cylinder all the sums are 1 and sum distances
+for all cylinders will be $(1 + 2 + 3 + \cdots + N - 2)$.
+
+This expression is expressed as the following.
+
+$$
+\frac{(x - 1)(x - 1 + 1)}{2N} + \frac{(N - x)(N - x + 1)}{2N}
+$$
+
+And we calculate the average:
+
+\begin{align*}
+  &\frac{1}{N}\sum_{x = 1}^{N}\frac{(x - 1)x}{2N} + \frac{(N - x)(N - x + 1)}{2N} \\
+  &=\frac{1}{2N^2}\sum_{x = 1}^{N}((x-1)x + (N - x)(N - x + 1)) \\
+  &=\frac{1}{2N^2}\sum_{x = 1}^{N}(2x^2 - (2N+2)x + n + N^2) \\
+  &=\frac{1}{2N^2}(2\sum_{x = 1}^{N}x^2 - (2N+2)\sum_{x = 1}^{N}x + N^2 + N^3) \\
+  &=\frac{N^2 - 1}{3N}
+\end{align*}
+
+\subsubsection*{Exercise 2.4}
+
+The density function to find probability is
+
+$$
+p(x) = \frac{3}{5} + \frac{4}{5}x
+$$
+
+he average distance between two sectors:
+
+$$
+\int_0^1 \int_0^1 p(xp(y)|x-y|dxdy)
+$$
+
+\subsubsection*{Exercise 2.5}
+
+$$
+4.17 + 0.25 + (2 \times 8.33) + 3.73= 24.81 \ \mathbf{ms}
+$$
+
+\end{document}
