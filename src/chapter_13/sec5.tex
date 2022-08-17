@@ -1,0 +1,109 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{13.5 Arranging Data on Disk}
+
+\hypertarget{Exercise13.5.1}{\subsubsection*{Exercise 5.1}}
+
+We first display all the bytes we need to store:
+
+\begin{itemize}
+  \item A character string: 15 bytes
+  \item An integer: 2 bytes
+  \item A SQL date: 10 bytes
+  \item A SQL time: 8 bytes
+\end{itemize}
+
+a)
+
+$$
+15 + 2 + 10 + 8 = 35 \ \mathbf{bytes}
+$$
+
+b)
+
+$$
+(15 + 1) + (2 + 2) + (10 + 2) + 8 = 40 \ \mathbf{bytes}
+$$
+
+c)
+
+$$
+(15 + 1) + (2 + 6) + (10 + 6) + 8 = 48 \mathbf{bytes}
+$$
+
+\hypertarget{Exercise13.5.2}{\subsubsection*{Exercise 5.2}}
+
+We first display all the bytes we need to store:
+
+\begin{itemize}
+  \item The real value: 8 bytes
+  \item A character string:  17 bytes
+  \item A single byte: 1 bytes
+  \item A SQL date: 10 bytes
+\end{itemize}
+
+a)
+
+$$
+8 + 17 + 1 + 10 = 36 \ \mathbf{bytes}
+$$
+
+b)
+
+$$
+8 + (17 + 7) + (1 + 3) + (10 + 2) = 48 \ \mathbf{bytes}
+$$
+
+c)
+
+$$
+8 + (17 + 7) + (1 + 7) + (10 + 6) = 56 \mathbf{bytes}
+$$
+
+\subsubsection*{Exercise 5.3}
+
+We should use the answer from \hyperlink{Exercise13.5.1}{Exercise 5.1}.
+
+a)
+
+$$
+4 + 4 + 1 + 35 = 44 \ \mathbf{bytes}
+$$
+
+b)
+
+$$
+4 + 4 + (1 + 3) + 40 = 52 \ \mathbf{bytes}
+$$
+
+c)
+
+$$
+(4 + 4) + (4 + 4 )+ (1 + 7) + 48 = 72 \mathbf{bytes}
+$$
+
+\subsubsection*{Exercise 5.4}
+
+We should use the answer from \hyperlink{Exercise13.5.2}{Exercise 5.2}.
+
+a)
+
+$$
+8 + 20 + 36 = 64 \ \mathbf{bytes}
+$$
+
+b)
+
+$$
+8 + 20 + 48 = 76 \ \mathbf{bytes}
+$$
+
+c)
+
+$$
+8 + (20 + 4) + 56 = 88 \mathbf{bytes}
+$$
+
+\end{document}
