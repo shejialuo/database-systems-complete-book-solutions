@@ -1,0 +1,153 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{13.3 Accelerating Access to Secondary Storage}
+
+\subsubsection*{Exercise 3.1}
+
+From the \hyperlink{Section13.2}{Section 13.2}, we can know that the average latency
+and transfer time is $3.8$ and $0.5$
+
+a)
+
+\begin{itemize}
+  \item Request 1: cylinder 8000, since the disk head already on cylinder 8000 there
+        is no seek time. The access time is $4.3$ms. And the completion time is $4.3$ms
+  \item Request 2: cylinder 48000, the seek time is $ 1 + (0.00025 \times 40000) = 11$ms,
+        And the completion time is $11 + 4.3 + 4.3 = 19.6$ms
+  \item Request 3: cylinder 40000, the seek time is $ 1 + (0.00025 \times 8000) = 3$ms
+        And the completion time is $3 + 4.3 + 19.6 = 26.9$ms
+  \item Request 4: cylinder 4000, the seek time is $1 + (0.00025 \times 36000) = 10$ms
+        And the completion time is $10 + 4.3 + 26.9 = 41.3$ms
+\end{itemize}
+
+b)
+
+We need to only calculate the seek time.
+
+\begin{itemize}
+  \item Request 1: cylinder 8000, since the disk head already on cylinder 8000 there
+        is no seek time. The completion time is $4.3$ms
+  \item Request 2: cylinder 48000, the seek time is $ 1 + (0.00025 \times 40000) = 11$ms
+        And the completion time is $11 + 4.3 + 4.3 = 19.6$ms
+  \item Request 3: cylinder 4000, the seek time is $ 1 + (0.00025 \times 44000) = 12$ms
+  \item And the completion time is $12 + 4.3 + 19.6 = 35.9$ms
+  \item Request 4: cylinder 40000, the seek time is $1 + (0.00025 \times 36000) = 10$ms
+        And the completion time is $10 + 4.3 + 35.9 = 50.2$ms
+\end{itemize}
+
+\subsubsection*{Exercise 3.2}
+
+We use the data from the \hyperlink{Section13.2}{Section 13.2}
+
+a)
+
+Recall that the Megatron 747 has a transfer time (in milliseconds) of 0.25,
+and an average rotational latency of 4.17. If the average seek
+moves 1/3 of the way across half of the 16,384 tracks, the average seek time for the
+Megatron 747 is $1 + .001 \times (16384/6) = 3.73.1+.001 \times (16384/6)=3.73.$
+Thus, the answer is one block per $0.25 + 4.17 + 3.73 = 8.15$ ms, or 123 blocks per second,
+on each disk. Thus, the system can read 246 blocks per second.
+
+b)
+
+For a "regular" Megatron 747, the average latency is $0.25 + 4.17 + 6.46 = 10.880.25+4.17+6.46=10.88$ ms.
+However, if we have two, mirrored disks, each can be handling a request at the same time, or
+one read per $5.44$ milliseconds. That gives us $184$ blocks per second.
+
+c)
+
+Restricting each disk to half the tracks means that
+if there is not always a queue of waiting requests (which slows the applications
+that the disk is supporting), then there might be two requests
+for the same half of the disk, in which case one disk is idle and a request waits.
+
+\subsubsection*{Exercise 3.3}
+
+a)
+
+Number of request we can say that will be $n$; Head travels across $65536$
+takes $n+16.38$ ms. The result in the rotational latency of $4.17n$ ms.
+The time required for transfer is $0.13$ ms which in turn gives the total
+transfer of $0.13n$ ms
+
+\begin{align*}
+&n + 16.38 + 4.17n + 0.13n = An \\
+&n = \frac{16.38}{A - 5.3}
+\end{align*}
+
+b)
+
+$$
+\frac{16.38}{A - 5.3}
+$$
+
+c)
+
+The waiting time for the request will be 0 when the request comes in right.
+In some cases, the request comes only after the pass has started
+which is a worst case.
+
+When the request gets its pass then the wait must get serviced. The wait
+time for service would be 0. The request will wait for the service
+at 0 ms, in the best case.
+
+$$
+\frac{16.38}{A - 5.3} - 0.065 \ \mathbf{ms}
+$$
+
+\subsubsection*{Exercise 3.4}
+
+Think of the requests as a random sequence of the integers $1$ through $4$.
+This sequence can be divided up into segments that do not contain two of
+the same integer, in a greedy way. For example, the sequence $123142342431$
+would be divided into $123$, $1423$, $42$, and $31$. The disks are serving all
+the requests from one segment, and each request is generated and starts at
+about the same time. When a segment is finished, the waiting request begins,
+along with other requests for other disks that are, by our assumption,
+generated almost immediately and thus finish at about the same time.
+
+The question is thus: if I choose numbers $1$, $2$, $3$, and $4$ at random, how many choices, on the average,
+can I make without a repeat? The cases are:
+
+\begin{itemize}
+  \item $1 / 4$ of the time we get an immediate repeat on the second choice, and the length is therefore $1$.
+  \item $(3/4)(1/2)=3/8$ of the time we get our first repeat at third number, and the length is $2$.
+  \item $(3/4)(1/2)(3/4)=9/32$ of the time we get our first repeat at the fourth number, and our length is $3$.
+  \item The remaining fraction of the time, $3/32$, we get four different numbers, and our length is $4$.
+\end{itemize}
+
+The average length is therefore:
+
+$$
+(1 / 4) \times 1 + (3 / 8) \times 2 + (9 / 32) \times 3 + (3 / 32) \times 4= 71 / 32
+$$
+
+\subsubsection*{Exercise 3.5}
+
+The disk serves all requests from one segment and each
+of these requests are generated and started at the same time.
+The waiting request begins when the segment is finished. This
+request is raised along with other disks and finishes at the
+same time. We have a request of the random sequence of integers
+1 through k. Now we can choose the numbers at random to find
+the number of choices without repeat.
+
+\begin{itemize}
+  \item When the length is 1, the it takes $\frac{1}{k}$ of the time
+        for the immediate repeat on the second choice.
+  \item When the length is 2, the time will be $\frac{1}{k} \times 2$.
+  \item When the length is $k$, the time will be $\frac{1}{k} \times k$
+\end{itemize}
+
+Average length is:
+
+\begin{align*}
+  &\frac{1}{k} + 2 \times \frac{1}{k} + \cdots + k \times \frac{1}{k} \\
+  &= (1 + 2 + \cdots + k) \frac{1}{k} \\
+  &= \frac{k \times (k + 1)}{2} \frac{1}{k} \\
+  &= \frac{k}{2}
+\end{align*}
+
+\end{document}
