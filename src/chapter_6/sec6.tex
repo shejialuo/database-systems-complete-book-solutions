@@ -1,0 +1,99 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection*{6.6 Transactions in SQL}
+
+\subsubsection*{Exercise 6.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  SET TRANSACTION READ ONLY
+    ISOLATION LEVEL READ COMMITTED
+  BEGIN TRANSACTION
+  SELECT model, price
+  FROM PC
+  WHERE speed = providedSpeed, ram = providedRAM
+  COMMIT
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  SET TRANSACTION READ WRITE
+    ISOLATION LEVEL SERIALIZABLE
+  BEGIN TRANSACTION
+  DELETE FROM PC
+  WHERE PC.model = providedModel
+  DELETE FROM Product
+  WHERE Product.model = providedModel
+  COMMIT
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  SET TRANSACTION READ WRITE
+    ISOLATION LEVEL SERIALIZABLE
+  BEGIN TRANSACTION
+  UPDATE PC
+  SET price = price - 100
+  WHERE PC.model = providedModel
+  COMMIT
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  SET TRANSACTION READ WRITE
+    ISOLATION LEVEL SERIALIZABLE
+  BEGIN TRANSACTION
+  UPDATE PC AS P
+  SET (maker, model, speed, ram, hd, price)
+  WHERE IF(maker=P.maker AND model=P.model AND speed=P.speed AND
+           ram=P.ram AND hd=P.hd AND price=P.price)
+        PRINT 'Error. There is model like that.'
+        COMMIT
+  COMMIT
+\end{lstlisting}
+
+\subsubsection*{Exercise 6.2}
+
+Here, I only give the answer for the first problem, it is easy to give an example for
+other situations. When looking up the \verb|PC|, we may UPDATE it at the same time.
+
+\subsubsection*{Exercise 6.3}
+
+Here, I only give the answer for the first problem, it is easy to give an example for
+other situations. When the ISOLATION LEVEL is \verb|READ UNCOMMITTED|, we may look up
+the dirty data.
+
+\subsubsection*{Exercise 6.4}
+
+\begin{itemize}
+  \item \emph{Serializable}: With a lock-based concurrency control serializability requires read and write
+        locks to be released at the end of the transaction.When using non-lock based
+        concurrency control, no locks are acquired; however, if the system detects a
+        write collision among several concurrent transactions, only one of them is
+        allowed to commit. Here the Transaction \verb|T|,has to acquire locks before reading
+        and writing. So, there will be no impact of other processes running.
+  \item \emph{Repeatable reads}: With a lock-based concurrency control this keeps read and write locks
+        until the end of the transaction. Write skew is possible at this isolation level, a situation
+        where two writes are allowed to the same column in a row by two different writers, resulting
+        in the row having data that is a mix of the two transactions. Here the Transaction \verb|T|,
+        has to acquire locks before reading and writing. So, there will be no impact of other
+        processes running.
+  \item \emph{Read committed}: A lock-based concurrency control this keeps write locks until the end
+        of the transaction, but read locks are released as soon as the \verb|SELECT| operation is performed.
+        Read committed is an isolation level that guarantees that any data read is committed at the
+        moment it is read. It simply restricts the reader from seeing any intermediate,
+        uncommitted, 'dirty' read. Here the data read by Transaction \verb|T| will always be committed so
+        there should be no issue with other process.
+  \item \emph{Read uncommitted}: This is the lowest isolation level. In this level, dirty reads
+        are allowed, so one transaction may see not-yet-committed changes made by other transactions.
+        Here it could be a situation where data updated by other transactions are not available
+        and the Transaction \verb|T| keeps running for ever
+\end{itemize}
+
+\end{document}
