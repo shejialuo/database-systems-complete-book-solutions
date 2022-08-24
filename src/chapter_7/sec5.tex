@@ -1,0 +1,121 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{7.5 Triggers}
+
+\subsubsection*{Exercise 5.1}
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER AvgNetWorthTrigger
+  AFTER UPDATE OF netWorth ON MovieExec
+  REFERENCING
+    OLD TABLE AS OldStuff,
+    NEW TABLE AS NewStuff
+  FOR EACH STATEMENT
+  WHEN (500000 > (SELECT AVG(netWorth) FROM MovieExec))
+    DELETE FROM MovieExec
+    WHERE (name, address, cert# , netWorth) IN NewStuff;
+    INSERT INTO MovieExec
+    (SELECT * FROM Old Stuff);
+\end{lstlisting}
+
+\subsubsection*{Exercise 5.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER noLowerPrice
+  AFTER UPDATE OF price ON PC
+  REFERENCING
+    OLD AS OldTuple
+    NEW AS NewTuple
+  FOR EACH ROW
+  WHEN (OldTuple.price << NewTuple.price)
+    UPDATE PC
+    SET price = OldTuple.price
+    WHERE speed = OldTuple.speed;
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER NewPrinterTrigger
+  AFTER INSERT ON Printer
+  REFERENCING
+    NEW ROW AS NewRow,
+    NEW TABLE AS NewStuff
+  FOR EACH ROW
+  WHEN (NOT EXISTS (SELECT * FROM Product
+    WHERE Product.model = NewRow.model))
+    DELETE FROM Printer
+    WHERE (model, color, type, price) IN NewStuff;
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE TRIGGER averagePrice
+  INSTEAD OF
+  UPDATE OF price OF Laptop
+  INSERT ON Laptop
+  DELETE ON Laptop
+  REFERENCING
+    OLD_TABLE AS OldStuff
+    NEW_TABLE AS NewStuff
+  WHEN(1500 <= ALL (
+        SELECT AVG(price)
+        FROM (Laptop EXCEPT OldStuff) UNION NewStuff, Product
+        WHERE Laptop.model = Product.model
+        GROUP BY maker ))
+    DELETE FROM Laptop
+    WHERE (model, speed, ram, hd, screen, price) IN OldStuff
+    INSERT INTO Laptop
+    (SELECT * FROM NewStuff);
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  BEFORE UPDATE ON PC  FOR EACH ROW
+  BEGIN
+    IF NEW.hd $>=$ 100*(NEW.ram)
+    THEN
+      SIGNAL SQLSTATE '45000'
+      SET MESSAGE\_TEXT = 'Cannot add or update row: HardDisk
+                           should be at least 100 times more than RAM.';
+      END IF;
+  END;
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  BEFORE INSERT ON PRODUCT
+  BEGIN
+    IF NEW.model IN (SELECT DISTINCT model FROM PC
+                     UNION ALL
+                     SELECT DISTINCT model FROM Printer
+                     UNION ALL
+                    SELECT DISTINCT model FROM Laptop)
+    THEN
+      SIGNAL SQLSTATE '45000'
+      SET MESSAGE\_TEXT = 'Cannot add or update row: Model number already assigned.
+                           Please try with another model number';
+    END IF;
+  END;
+\end{lstlisting}
+
+\subsubsection*{Exercise 5.3}
+
+% TODO
+
+Need help
+
+\subsubsection*{Exercise 5.4}
+
+% TODO
+
+Need help
+
+\end{document}

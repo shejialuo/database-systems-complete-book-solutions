@@ -1,0 +1,134 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{7.4 Assertions}
+
+\subsubsection*{Exercise 4.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION no_maker CHECK(
+    NOT IN ((SELECT maker FROM Product NATURAL JOIN PC)
+            INTERSECT
+            (SELECT maker FROM Product NATURAL JOIN Laptop))
+  );
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION speed_better CHECK(
+    NOT EXISTS (PC JOIN Laptop ON PC.model = Laptop.model AND
+                              Laptop.speed < PC.speed )
+  );
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION more_memory_more_price CHECK(
+    NOT EXISTS (PC JOIN Laptop ON PC.model = Laptop.model AND
+                                  Laptop.ram > PC.ram AND
+                                  Laptop.price <= PC.price )
+  );
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION check_integrity CHECK(
+    NOT EXISTS((SELECT model FROM PC)
+                INTERSECT
+               (SELECT model FROM Laptop)
+              UNION
+               ((SELECT model FROM Laptop)
+                 INTERSECT
+                (SELECT model FROM Printer)
+               )
+  );
+\end{lstlisting}
+
+\subsubsection*{Exercise 4.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION class_no_more_than_2_sheep CHECK(
+    NOT EXISTS (2 >= ALL (SELECT COUNT(*)
+                FROM Ships
+                GROUP BY class)
+  )
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION noCountry CHECK(NOT EXISTS (
+    (SELECT type FROM Classes WHERE type=bb)
+    INTERSECT
+    (SELECT type FROM Classes WHERE type=bc))
+  );
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION sunkCheck CHECK(
+    SELECT *
+    FROM ((Classes NATURAL JOIN Ships) NATURAL JOIN
+          Battles WHERE numGuns > 9)
+         INTERSECT
+         ((SELECT * FROM Classes NATURAL JOIN
+           Ships WHERE numGuns < 9) NATURAL JOIN Battles WHERE result='sunk')
+  );
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION launched CHECK(
+    NOT IN(SELECT class
+          FROM Ships
+          WHERE class='Tennessee')
+          INTERSECT
+          (1921 > ALL (SELECT launched FROM class))
+  );
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION nameShip CHECK(
+    SELECT name, class
+    FROM Ships S, Classes C
+    WHERE S.name=C.class
+  );
+\end{lstlisting}
+
+\subsubsection*{Exercise 4.3}
+
+I think the Exercise 11 should be Example 11, which is
+
+\begin{lstlisting}[language=sql]
+  CREATE ASSERTION RichPres CHECK (NOT EXISTS
+    (SELECT Studio.name
+    FROM Studio, MovieExec
+    WHERE presC# = cert# AND netWorth < 10000000
+    )
+  );
+\end{lstlisting}
+
+It is easy to convert the assertion to tuple-based constraints:
+
+\begin{lstlisting}[language=sql]
+  CHECK (NOT EXISTS (
+    SELECT Studio.name
+    FROM Studio, MovieExec
+    WHERE presC# = cert# AND netWorth < 10000000
+    )
+  );
+\end{lstlisting}
+
+\end{document}

@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\subsection*{7.2 Constraints on Attributes and Tuples}
+\subsection{7.2 Constraints on Attributes and Tuples}
 
 \subsubsection*{Exercise 2.1}
 
@@ -21,7 +21,7 @@ b)
 c)
 
 \begin{lstlisting}[language=sql]
-  studioName CHECK 
+  studioName CHECK
     (studioName in('Disney', 'Fox', 'MGM', 'Paramount'));
 \end{lstlisting}
 
@@ -30,7 +30,7 @@ c)
 a)
 
 \begin{lstlisting}[language=sql]
-  birthdate CHECK 
+  birthdate CHECK
     (birthdate NOT IN (SELECT year FROM Movies));
 \end{lstlisting}
 

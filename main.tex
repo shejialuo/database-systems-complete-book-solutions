@@ -3,13 +3,22 @@
 \documentclass{article}
 \usepackage{Lib}
 
+% Use this we disable automatic number
+% see https://stackoverflow.com/questions/38292590/remove-section-numbers-latex
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
 \begin{document}
+
   \subfile{src/chapter_1/ch1.tex}
   \subfile{src/chapter_2/ch2.tex}
   \subfile{src/chapter_3/ch3.tex}
+  \subfile{src/chapter_4/ch4.tex}
   \subfile{src/chapter_5/ch5.tex}
   \subfile{src/chapter_6/ch6.tex}
   \subfile{src/chapter_7/ch7.tex}
   \subfile{src/chapter_8/ch8.tex}
   \subfile{src/chapter_13/ch13.tex}
+
 \end{document}
