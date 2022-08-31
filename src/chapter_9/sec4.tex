@@ -1,0 +1,196 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{9.4 Stored Procedures}
+
+\subsection*{Exercise 4.1}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION Movie (n CHAR(20), w INT) RETURN INT
+    SELECT name, netWorth
+    FROM Studio, MovieExec
+    WHERE name=n AND netWorth=w;
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION nameAddress(n CHAR(20), a CHAR(20)) RETURN BOOLEAN
+    IF(SELECT name.S, name.E
+       FROM MovieStar.S, MovieExec.E
+       WHERE n=name.S AND NOT (n=name.E)) RETURN 1;
+    ELSEIF 2 <= (SELECT name.S,name.E
+                 FROM MovieStar.S, MovieExec.E
+                 WHERE n=name.E AND NOT (n=name.S) )
+    ELSEIF 3 <= (SELECT name.S, name.E
+                 FROM MovieStar.S, MovieExec.E
+                 WHERE n=name.E AND n=name.S)
+    ELSEIF 4 <= (SELECT name.S, name.E
+                 FROM MovieStar.S, MovieExec.E
+                 WHERE NOT(n=name.E) AND NOT(n=name.S))
+    END IF;
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION sName (s CHAR(20)) RETURN CHAR
+    IF(SELECT *
+       FROM Movies
+       WHERE studioName=s
+       GROUP BY length
+       HAVING COUNT(*)=2)
+    THEN RETURN sName;
+    ELSE IF (SELECT *
+             FROM Movies
+             WHERE studioName=s
+             GROUP BY length
+             HAVING COUNT(*)=1)
+         THEN RETURN 'There is no second longest';
+         END IF;
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION star (s CHAR(20)) RETURN INT
+    IF(SELECT MIN(year) AS lowestYear, length
+       FROM Movies
+       WHERE length>120)
+    RETURN s;
+    ELSE RETURN 0;
+    END IF;
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION address (a CHAR(50)) RETURN CHAR
+    IF (SELECT name
+        FROM MovieStar
+        WHERE address=a
+        GROUP BY name
+        HAVING COUNT(address)=1)
+    RETURN a;
+    ELSEIF SELECT name
+           FROM MovieStar
+           WHERE address=a
+           GROUP BY name
+           HAVING COUNT(address)=0 OR HAVING COUNT(address)>1
+           RETURN NULL;
+           END IF;
+\end{lstlisting}
+
+f)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION nameStar (n CHAR(50)) RETURN CHAR
+    (DELETE name FROM MovieStar WHERE n=name);
+    UNION (DELETE title, movieTitle
+          FROM StarsIn, Movies
+          WHERE n=starName AND n=title);
+\end{lstlisting}
+
+\subsection*{Exercise 4.2}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION priceP (p INT) RETURN INT
+    IF(SELECT MIN(price)
+       FROM PC
+       WHERE price=p); RETURN INT;
+    END IF;
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION productModel (m CHAR(20), n INT)
+    IF(SELECT price
+       FROM PC, Laptop, Printer
+       WHERE m=maker AND n=model); RETURN price;
+    END IF;
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION takeALL (m INT, s INT, r INT, h INT, p INT ) RETURN CHAR
+    INSERT INTO PC VALUES(m, s, r, h, p)
+    IF(SELECT model, speed, ram, hd, price
+       FROM PC
+       WHERE model=m, speed=s, ram=r, hd=h, price=p); RETURN 'Error';
+    ELSE model=model+1;
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION morePrice (p INT) RETURN INT
+    IF(SELECT price
+       FROM Laptop, PC, Printer
+       WHERE p=price
+       HAVING COUNT(*)
+       GROUP BY Laptop, PC, Printer;) RETURN INT;
+    END IF;
+\end{lstlisting}
+
+\subsection*{Exercise 4.3}
+
+a)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION firepower (c CHAR(50)) RETURN INT
+    IF(SELECT class, numGuns, bore
+       FROM Classes WHERE c=class); RETURN numGuns*bore^3;
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION battleName (n CHAR(20)) RETURN
+    IF(SELECT name, country
+       FROM Battles
+       WHERE n=name
+       HAVING COUNT (*)=2
+       GROUP BY country); RETURN n;
+    ELSEIF(SELECT name, country
+           FROM Battles
+           WHERE n=name
+           HAVING COUNT(*)>2 OR HAVING COUNT(*)<2
+           GROUP BY country; RETURN NULL;
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION takeALL (c CHAR(20), t CHAR(20), c CHAR(20), n INT, b INT, d INT)
+    INSERT INTO Classes VALUES(c, t, c, n, b, d);
+    INSERT INTO Ships WHERE c=class;
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=sql]
+  CREATE FUNCTION shipBattle (n CHAR(20))
+    IF(SELECT date.B, launched.S
+       FROM Battles.B, Ships.s
+       WHERE date<launched;) RETURN date=0, launched=0;
+    ENDIF;
+\end{lstlisting}
+
+\subsection*{Exercise 4.4}
+
+\begin{align*}
+  \sum_{i = 1}^{n}(x_{i} - \bar{x}^{2} / n)&=
+    \frac{1}{n}\sum_{i = 1}^{n}(x_{i}^{2} - 2\bar{x}x_{i} + \bar{x}^{2}) \\
+  &= \frac{1}{n}\left(\sum x_{i}^{2} - \sum 2\bar{x}x_{i} + \sum \bar{x}^{2}\right) \\
+  &= \frac{1}{n}\left(\sum x_{i}^{2} - 2\bar{x}(n\bar{x}) + n\bar{x}^{2}\right) \\
+  &= \frac{1}{n}\left(\sum x_{i}^{2} - n\bar{x}^{2}\right) \\
+\end{align*}
+
+\end{document}

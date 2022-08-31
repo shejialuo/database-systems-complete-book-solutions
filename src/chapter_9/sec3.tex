@@ -1,0 +1,324 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{9.3 The SQL/Host-Language Interface}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char maker[10];
+    int model;
+    int speed;
+    int price;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUNT GOTO bad_number;
+    printf("Enter the price for PC:"); scanf_s("%d", &price);
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT Product.maker,
+    Product.model,
+    Product.speed FROM Product,
+    PC WHERE Product.model = PC.model ORDER BY abs(Product.model - PC.model) EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INTO: maker,
+      :model,
+      :speed;
+      if (NOT FOUND) break;
+    }
+    EXCEL SQL CLOSE CURSOR c;
+    query_error;
+    printf("SQL error: %ld", sqlca->sqlcode);
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit()
+  }
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char maker[10];
+    int model;
+    int speed;
+    int ram;
+    int hd;
+    int screen;
+    int price;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the minimum Speed, RAM, Hard disk, Screen size of the PC");
+    scanf_s("%d %d %d %d, &price, &ram, &hd, &speed");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT Product.maker,
+    Laptop.model,
+    Laptop.speed,
+    Laptop.ram,
+    Laptop.hd,
+    Laptop.price,
+    Laptop.screen FROM Product,
+    PC WHERE PC.model = Laptop.model ORDER BY abs(PC.price - Laptop.price);
+    EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INTO: maker,
+      :model,
+      :speed,
+      :ram,
+      :hd,
+      :price,
+      :screen;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOR c;
+    query_error;
+    printf("SQL error:  % ld ", sqlca->sqlcode);
+    exit();
+    bad_number;
+    printf("Invalid order number ");
+    exit()
+  }
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char maker[10];
+    int model;
+    int speed;
+    int ram;
+    int hd;
+    int screen;
+    int price;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the manufacturer of the PC");
+    scanf_s("%s, &maker");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT Laptop.model,
+    Product.type,
+    Laptop.screen,
+    Laptop.ram,
+    Laptop.hd,
+    Laptop.price,
+    Laptop.screen FROM Product,
+    PC,
+    Laptop WHERE Product.model = Pc.model AND Laptop.model;
+    EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INTO: model,
+      :type,
+      :speed,
+      :ram,
+      :hd,
+      :price,
+      :screen;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOR c;
+    query_error;
+    printf("SQL error:  % ld ", sqlca ->sqlcode);
+    exit();
+    bad_number;
+    printf("Invalid order number ");
+    exit()
+  }
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char maker[10];
+    int model;
+    int pmodel;
+    int speed;
+    int price;
+    EXEC SQL END DECLARE SECTION EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the budget, minimum speed of the PC:");
+    scanf_s("%d %d, &price, &speed");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT Laptop.model, Printer.model FROM Product, Laptop, Printer, PC WHERE PC.model <=<=price;
+    EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INTO :model, :pmodel;
+      if(NOT FOUND) break;
+    }
+    EXCEL SQL CLOSE CURSOR c;
+    query_error;
+    printf("SQL error: %ld", sqlca->sqlcode);
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+e)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    char maker[10];
+    int model;
+    int speed;
+    int ram;
+    int hd;
+    int price;
+    EXEC SQL END DECLARE SECTION EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the manufacturer, speed, ram, hard disk, price of the PC: ");
+    scanf_s("%s %d %d %d %d %d, &maker, &model, &speed, &ram, &hd, &price");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT Product.maker, Laptop.model, Laptop.speed, Laptop.ram, Laptop.hd, Laptop.price FROM Product, PC, Laptop WHERE PC.model=model;
+    EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INSERT INTO Product (maker, model, type) VALUES (:maker, :model, :") INSERT INTO PC (model, speed, ram, hd, screen, price) VALUES (:model, :speed, :ram, :hd:", :price);
+      if(NOT FOUND) bad_order;
+    }
+    EXCEL SQL CLOSE CURSOR c;
+    query_error;
+    printf("SQL error: %ld", sqlca->sqlcode);
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+\subsubsection*{Exercise 3.2}
+
+a)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    int bore;
+    int numGuns;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the bore and number of Guns");
+    scanf_s("%d%d, &bore, &numGuns");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT R1 AS SELECT (numGuns*bore^3) AS firepower FROM Classes, R2 AS SELECT min(firepower) minimum FROM R1, SELECT Classes FROM R1 WHERE firepower = (SELECT minimum FROM R2);
+    EXEC SQL OPEN CURSOR c;
+    while(1){
+      EXEC SQL FETCH c INTO :bore, :numGuns;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOS c;
+    query_error;
+    printf("SQL error: "%ld, sqlca->sqlcode");
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+b)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    string name;
+    string class;
+    string country;
+    string outcomes;
+    string battle;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the name of battle");
+    scanf_s("%s, &name");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT R1 AS SELECT class, name AS ship, country FROM Classes NATURAL JOIN Ships, R2 AS SELECT battle, result, country FROM Outcomes NATURAL JOIN R1, R3 AS (SELECT count(*) AS COUNT, country FROM R2 WHERE result=? AND battle=? GROUP BY country) SELECT country FROM R3 WHERE COUNT="", SELECT(max(COUNT) FROM R3);
+    EXEC SQL OPEN CURSOR c;
+    while (1) {
+      EXEC SQL FETCH c INTO name:, :class, :country, :outcomes, :battle;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOS c;
+    query_error;
+    printf("SQL error: "%ld, sqlca->sqlcode");
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+c)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    int numGuns;
+    int bore;
+    int displacement;
+    string class;
+    string country;
+    string type;
+    string name;
+    string class;
+    int launched;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the name of class and information about tuple of Classes");
+    scanf_s("%s%s%s%d%d%d, &class, &country, &type, &numGuns, &bore, &displacement");
+    printf("Enter the name, class and launched of the ships");
+    scanf_s("%s%s%d, &name,&class, &launched");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT INSERT INTO Classes VALUES(?,?,?,?,?,?), INSERT INTO Ships VALUES(?,?,?);
+    EXEC SQL OPEN CURSOR c;
+    while(1) {
+      EXEC SQL FETCH c INTO name:, :class, :country, :numGuns, :bore, :displacement, :type, :name, :class, :launched;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOS c;
+    query_error;
+    printf("SQL error: "%ld, sqlca->sqlcode");
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+d)
+
+\begin{lstlisting}[language=c]
+  int main() {
+    EXEC SQL BEGIN DECLARE SECTION;
+    int launched;
+    string battle;
+    string name;
+    string date;
+    EXEC SQL END DECLARE SECTION;
+    EXEC SQL WHENEVER SQLERROR GOTO query_error;
+    EXEC SQL WHENEVER NOT FOUND GOTO bad_number;
+    printf("Enter the name of ships that were in battle before they were launched");
+    scanf_s("%s%s%d%s, &name,&battle, &launched, &date");
+    EXEC SQL DECLARE c CURSOR FOR EXEC SQL SELECT SELECT name.s, launched.s, date.b FROM Ships.s, Battles.b WHERE date<launced;
+    EXEC SQL OPEN CURSOR c;
+    while(1) {
+      EXEC SQL FETCH c INTO name:, :date, :name, :battle, :launched;
+      IF(NOT FOUND) break
+    }
+    EXEC SQL CLOSE CURSOS c;
+    query_error;
+    printf("SQL error: "%ld, sqlca->sqlcode");
+    exit();
+    bad_number;
+    printf("Invalid order number");
+    exit();
+  }
+\end{lstlisting}
+
+\end{document}
