@@ -1,0 +1,78 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{13.7 Variable-Length Data and Records}
+
+\subsubsection*{Exercise 7.1}
+
+$$
+4 + (3 - 1) \times 4 + 3 \times 10 = 42 \ \mathbf{bytes}
+$$
+
+Here, I briefly talk about the meaning:
+
+\begin{itemize}
+  \item 4: Record length.
+  \item (3-1): The number of pointer to variable-length fields.
+  \item 3: The number of fix-length fields.
+\end{itemize}
+
+\subsubsection*{Exercise 7.2}
+
+$$
+2 + 40 + \frac{10 + 50}{2} + \frac{20 + 80}{2} + \frac{0 + 1000}{2} = 622 \ \mathbf{bytes}
+$$
+
+\subsubsection*{Exercise 7.3}
+
+%TODO: Need community help
+Need community help
+
+\subsubsection*{Exercise 7.4}
+
+For this question, we assume that there are $n$ patients.
+
+a)
+
+$$
+4 + (40 \times n \times p)
+$$
+
+b)
+
+$$
+4 + ((40 + 4) \times n \times p)
+$$
+
+c)
+
+$$
+40k + 4
+$$
+
+d)
+
+$$
+k = n \times p
+$$
+
+\subsubsection*{Exercise 7.5}
+
+Every record and record fragment requires a fragment header to support spanned records. Since
+$500 < r \leq 1000$, we can store only a single record when we don't support spanned records.
+Therefore, we don't use $1000-r$ bytes in this case. If we support them, we can store one record
+and one record fragment and we need to use 32 bytes for fragment headers. Therefore,
+if $r < 1000 - 32 = 968$, then we can improve space usage.
+
+\subsubsection*{Exercise 7.6}
+
+$$
+\frac{8 \times 256 \times 4096}{298.262 \times 67.140125} = 418
+$$
+
+If we organize 418 chunks from different movies fit into 8 tracks
+and all movies occupy consecutive cylinders, we can play as many as
+418 movies with an initial delay of 100 ms.
+
+\end{document}
