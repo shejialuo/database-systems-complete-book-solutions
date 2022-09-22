@@ -1,0 +1,120 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{13.4 Disk Failures}
+
+\subsubsection*{Exercise 4.1}
+
+a)
+
+There is the odd number of 1's so the parity bit is 1.
+
+b)
+
+There is the even number of 1's so the parity bit is 1
+
+c)
+
+There is an odd number of 1's, so the parity bit is 1
+
+\subsubsection*{Exercise 4.2}
+
+a) 1 0
+
+b) 0 0
+
+c) 1 0
+
+\subsubsection*{Exercise 4.3}
+
+$$
+\frac{1}{1095} \times 0.04 = 3.65 \ \mathbf{ms}
+$$
+
+\subsubsection*{Exercise 4.4}
+
+a)
+
+To compute the mean time to failure, we can compute the probability that the system fails in a given year. The MTTF will be the
+inverse of that probability. Note that there are 8760 hours in a year. The system fails if the second disk fails while the first
+is being repaired. The probability of a failure of one of the two disks in a year is $2F$.
+The probability that the second disk will fail during the H hours that the other is being prepared is
+$FH/ 8760$. Thus, the probability of a failure in any year is $2F^{2H/8760}$, and the MTTF is
+$4380 / F^{2H}$.
+
+b)
+
+The system fails if any of the other $N-1$ disks fails while the first is being repaired.
+The probability of a failure of one of the $N$ disks in a year is $NF$. The probability
+that a second disk will fail during the $H$ hours that the other is being prepared
+is $(N - 1)FH / 8760$. Thus, the probability of a failure in any year is $N(N-1)F^{2H/8760}$.
+
+\subsubsection*{Exercise 4.5}
+
+$$
+\frac{8760^{2}}{3F^{3}H^{2}}
+$$
+
+\subsubsection*{Exercise 4.6}
+
+a) 01010110
+
+b) 00110110
+
+\subsubsection*{Exercise 4.7}
+
+a) 01010110
+
+b) 00110110
+
+\subsubsection*{Exercise 4.8}
+
+a) 10101010
+
+b) 01101100
+
+\subsubsection*{Exercise 4.9}
+
+a)
+
+\begin{itemize}
+  \item 00111100
+  \item 11000111
+  \item 01010101
+  \item 10000100
+  \item 10101110
+  \item 01111111
+  \item 11101101
+\end{itemize}
+
+b)
+
+\begin{itemize}
+  \item 00111100
+  \item 00001111
+  \item 01010101
+  \item 10000100
+  \item 01100110
+  \item 10110111
+  \item 11101101
+\end{itemize}
+
+\subsubsection*{Exercise 4.10}
+
+a)
+
+(Row 1) Using disks 2, 3, and 5, recover disk 1
+(Row 3) Using disks 1, 3, and 4, recover disk 7
+
+b)
+
+(Row 1) Using disks 2, 3, and 5, recover disk 1
+(Row 2) Using disks 1, 2, and 6, recover disk 4
+
+c)
+
+(Row 1) Using disks 1, 2, and 5, recover disk 3
+(Row 2) Using disks 1, 2, and 4, recover disk 6
+
+\end{document}
