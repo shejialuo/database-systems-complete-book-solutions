@@ -1,0 +1,91 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{14.1 Index-Structure Basics}
+
+\subsubsection*{Exercise 1.1}
+
+a)
+
+The number of blocks to store the record is:
+
+$$
+\frac{n}{3}
+$$
+
+The number of blocks to store the pointer is:
+
+$$
+\frac{n}{10}
+$$
+
+Thus, the answer is:
+
+$$
+\frac{n}{3} + \frac{n}{10} = \frac{13n}{30}
+$$
+
+b)
+
+The number of blocks to store the record is:
+
+$$
+\frac{n}{3}
+$$
+
+The number of blocks to store the pointer is:
+
+$$
+\frac{n / 3}{10}
+$$
+
+Thus, the answer is:
+
+$$
+\frac{n}{3} + \frac{n / 3}{10} = \frac{11n}{30}
+$$
+
+\subsubsection*{Exercise 1.2}
+
+a)
+
+The number of blocks to store the record is:
+
+$$
+\frac{n}{200 \times 80\%}
+$$
+
+The number of blocks to store the pointer is:
+
+$$
+\frac{n}{30 \times 80\%}
+$$
+
+Thus, the answer is:
+
+$$
+\frac{n}{200 \times 80\%} + \frac{n}{30 \times 80\%} = \frac{23n}{480}
+$$
+
+b)
+
+The number of blocks to store the record is:
+
+$$
+\frac{n}{30 \times 80\%}
+$$
+
+The number of blocks to store the pointer is:
+
+$$
+\frac{n}{30 \times 80\% \times 200 \times 80\%}
+$$
+
+Thus, the answer is:
+
+$$
+\frac{n}{30 \times 80\%} + \frac{n}{30 \times 80\% \times 200 \times 80\%} = \frac{161n}{3840}
+$$
+
+\end{document}
