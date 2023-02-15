@@ -1,0 +1,134 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{14.2 B-Trees}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+The number to store the data is
+
+$$
+1000000 / 10 = 100000 \ \textbf{blocks}
+$$
+
+The number to store the pointers is
+
+$$
+1000000 / 70 \approx 14286 \ \textbf{blocks}
+$$
+
+The number to store the key to points is:
+
+$$
+14286 / 79 \approx 70 \ \textbf{blocks}
+$$
+
+And we can defer recursively:
+
+\begin{align*}
+205 / 70 &\approx 3 \ \textbf{blocks} \\
+3 / 70 &\approx 1 \ \textbf{blocks}
+\end{align*}
+
+Total blocks:
+
+$$
+100000 + 14286 + 205 + 3 + 1 = 114495 \\ textbf{blocks}
+$$
+
+And the average number of disk operations should be 5.
+
+b)
+
+Same as (a) because the ordering does not matter.
+
+c)
+
+\begin{align*}
+  1000000/ 10 &= 100000 \ \textbf{blocks} \\
+  100000 / 70 &\approx 1429 \ \textbf{blocks} \\
+  1429 / 70 &\approx 21 \ \textbf{blocks} \\
+  21 / 70 &\approx 1 \textbf{block} \\
+  100000 + 1429 + 21 + 1 &= 101451 \ \textbf{blocks}
+\end{align*}
+
+And the average number of disk operations should be 4.
+
+d)
+
+\begin{align*}
+  1000000/ 7 &\approx 142858 \ \textbf{blocks} \\
+  142858 / 70 &\approx 2041 \ \textbf{blocks} \\
+  2041 / 70 &\approx 30 \ \textbf{blocks} \\
+  30 / 70 &\approx 1 \textbf{block} \\
+  142858 + 2041 + 30 + 1 &= 144930 \ \textbf{blocks}
+\end{align*}
+
+And the average number of disk operations should be 4.
+
+e)
+
+The data file is a sequential file, and the B-tree is a sparse index, but
+each primary block of the data file has one overflow block. On average,
+the primary block is full, and the overflow block is half full. However,
+records are in no particular order within a primary block and its overflow
+
+Total blocks: 134302.
+
+And the average number of disk operations should be 13 / 3.
+
+\subsubsection*{Exercise 2.2}
+
+The idea is just like Exercise 2.1
+
+a)
+
+Total blocks: 117.
+
+Average number of disk operations should be 5.
+
+b)
+
+Total blocks: 117.
+
+Average number of disk operations should be 5.
+
+c)
+
+Total blocks: 116.
+
+Average number of disk operations should be 4.
+
+d)
+
+Total blocks: 146857.
+
+Average number of disk operations should be 4.
+
+e)
+
+Total blocks: 136334.
+
+Average number of disk operations should be 13 / 3.
+
+\subsubsection*{Exercise 2.3}
+
+\begin{align*}
+  \frac{16384}{4} &= 4096 \\
+  \frac{16384}{12} &= 1365
+\end{align*}
+
+\subsubsection*{Exercise 2.4}
+
+a)
+
+Interior nodes: at least 5 keys and 6 pointers. Leaves: at least 5 keys and pointers
+
+b)
+
+Interior nodes: at least 5 keys and 6 pointers. Leaves: at least 6 keys and pointers
+
+\end{document}
