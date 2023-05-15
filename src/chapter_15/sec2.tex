@@ -1,0 +1,110 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{15.2 One-Pass Algorithms}
+
+\subsubsection*{Exercise 2.1}
+
+Need community help.
+
+\subsubsection*{Exercise 2.2}
+
+a)
+
+This is not a blocking operator. The projection operation does not need
+entire relation to produce the output.
+
+b)
+
+This is not a blocking operator. The distinct tuple is always in the
+memory.
+
+c)
+
+This is a blocking operator. To group we need to examine every tuple.
+
+d)
+
+This is not a blocking operator. Because we could read each
+block into the buffer once at a time.
+
+e)
+
+This is not a blocking operator. The operation does not require the entire
+tuple structure to produce the output.
+
+f)
+
+This can be or can not be a blocking operator. If the computation starts
+from $R$ to $S$ then each block of $R$ is read and the operation is not blocking.
+If R is read into $M-1$ blocks then each block of $S$ is read and the operation
+is blocking.
+
+g)
+
+This is not a blocking operator. This operation does not need all the tuples
+to produce the output.
+
+h)
+
+This can be or can not be a blocking operator. This operation is the similar
+to the operation in the set difference.
+
+i)
+
+This is not a blocking operator. This operation does not need all the tuples
+to produce the output.
+
+j)
+
+This is not a blocking operator. It just need the matching tuple between
+the relations to produce the output.
+
+\subsubsection*{Exercise 2.3}
+
+Both arguments are not clustered which means we need to read every tuple.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}ccc@{}}
+  \toprule
+  Operators                      & Memory required  & Disk I/O required \\ \midrule
+  $\sigma$, $\Pi$                &   1              &        T          \\
+  $\gamma$, $\delta$             &   1              &        T          \\
+  $\cap$, $\cup$, $-$,$\times$   &   $T(S) / T(B)$  &     T(S) + T(R)   \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+$R$ is clustered and $S$ is not clustered
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}ccc@{}}
+  \toprule
+  Operators                      & Memory required  & Disk I/O required \\ \midrule
+  $\sigma$, $\Pi$                &   1              &        T          \\
+  $\gamma$, $\delta$             &   T              &        T          \\
+  $\cap$, $\cup$, $-$,$\times$   &   $T(S) / T(B)$  &     B(R) + T(S)   \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+$R$ is not clustered and $S$ is clustered
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}ccc@{}}
+  \toprule
+  Operators                      & Memory required  & Disk I/O required \\ \midrule
+  $\sigma$, $\Pi$                &   1              &        T          \\
+  $\gamma$, $\delta$             &   T              &        T          \\
+  $\cap$, $\cup$, $-$,$\times$   &   $B(S)$         &     T(R) + B(S)   \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\subsubsection*{Exercise 2.4}
+
+Need community help.
+
+\end{document}

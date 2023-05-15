@@ -1,6 +1,6 @@
 # Database systems: the complete book
 
-This is my solutions for Database systems: the complete book 2nd.
+This is the solutions for Database systems: the complete book 2nd.
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
@@ -12,6 +12,8 @@ This work is licensed under a
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
+
+You can download the PDF in the [release](https://github.com/shejialuo/database-systems-complete-book-solutions/releases) page.
 
 ## Build
 
