@@ -1,0 +1,81 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{15.3 Nested-Loop Joins}
+
+\subsubsection*{Exercise 3.1}
+
+Need community help.
+
+\subsubsection*{Exercise 3.2}
+
+According to the formula:
+
+$$
+B(S) + ((B(S)B(R))) / (M - 1)
+$$
+
+We have
+
+$$
+10000 + (10000 ^ 2) / 999 = 110101
+$$
+
+\subsubsection*{Exercise 3.3}
+
+According to the formula:
+
+$$
+B(S) + ((B(S)B(R))) / (M - 1) = IO
+$$
+
+We can have:
+
+$$
+M = (IO - B(S)) / ((B(S)B(R))) + 1
+$$
+
+(a)
+
+$$
+M = 1112
+$$
+
+(b)
+
+$$
+M = 6.667
+$$
+
+(c)
+
+$$
+M = 20.001
+$$
+
+\subsubsection*{Exercise 3.4}
+
+a)
+
+A block based nested loop join, used to join two relation $R$ and $S$ in a
+relational database, but nested loop join, used to two relations and the
+outer and inner join respectively.
+
+b)
+
+case 1: $R$ is not clustered and smaller. Cost of reading all tuples of $S$
+(clustered), $T(S)+B(S)$ Cost of reading $R$ tuples and the cost of join with $S$ in
+the main memory is: $T(R)+B(S)B(R)/M $ The total cost is $T(R)+
+B(S)B(R)/M+T(S)+T(R)$
+
+case 2: $S$ is not clustered and smaller. Cost of reading all tuples of $S$
+(clustered), $T(R)+B(R)$ Cost of reading $S$ tuples and the cost of join with $R$
+in the main memory is: $T(S)+B(S)B(R)/M$ The total cost is $T(S)+
+B(S)B(R)/M+T(R)+B(R)$
+
+\subsubsection*{Exercise 3.5}
+
+Need community help.
+
+\end{document}
