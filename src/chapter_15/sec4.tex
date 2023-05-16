@@ -1,0 +1,124 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{15.4 Two-Pass Algorithms Based on Sorting}
+
+\subsubsection*{Exercise 4.1}
+
+Need community help.
+
+\subsubsection*{Exercise 4.2}
+
+(a)
+
+$$
+3 * (B(R) + B(S)) = 3 * (10000 + 10000) = 60000
+$$
+
+
+(b)
+
+$$
+5 * (B(R) + B(S)) = 5 * (10000 + 10000) = 100000
+$$
+
+(c)
+
+$$
+3 * (B(R) + B(S)) = 3 * (10000 + 10000) = 60000
+$$
+
+\subsubsection*{Exercise 4.3}
+
+By using the extra buffers for saving disk I/O, we can also increase the
+overall performance of I/O. Sometimes I/O is the bottleneck for the is
+against improvement of runtime performance. That's why, it has a big role
+in this system. But there are also some types of buffering of disk I/O. They
+are single buffering, double buffering, circular buffer, an so on. A system
+transmits data of I/O to one buffer while operating system empties the
+other in double buffering.
+
+\subsubsection*{Exercise 4.4}
+
+Total number of disk I/O: sort relation $R$ and $S$ + ($y$-values $*$ number of
+I/O)
+
+a)
+
+$$
+4 (B(R)+B(S)) + (250 + (3 * 500)) = 9500
+$$
+
+b)
+
+$$
+4 (B(R)+B(S)) + (5 * 300) = 7500
+$$
+
+c)
+
+$$
+4 (B(R)+B(S)) + (10 * 150) = 7500
+$$
+
+\subsubsection*{Exercise 4.5}
+
+a)
+
+$$
+2 (B(R)+B(S)) + (2 * 1750) = 6500
+$$
+
+b)
+
+$$
+2 (B(R)+B(S)) + (5 * 500) = 5500
+$$
+
+c)
+
+$$
+4 (B(R)+B(S)) + (10 * 150) = 7500
+$$
+
+\subsubsection*{Exercise 4.6}
+
+(a)
+
+$$
+M = \sqrt{B} = 100
+$$
+
+(b)
+
+$$
+M = \sqrt{B} = 100
+$$
+
+(c)
+
+$$
+M = \sqrt{B(S)B(R)} = 10000
+$$
+
+\subsubsection*{Exercise 4.7}
+
+Need community help.
+
+\subsubsection*{Exercise 4.8}
+
+Need community help.
+
+\subsubsection*{Exercise 4.9}
+
+Since the merging operation is used for sorting the sequence hence the
+total time complexity is $O(M\log(M))$ and the space complexity
+is $\log(M)$. The concerned term is the space complexity
+here as the I/O operations take place on the disk memory and lesser the
+consumption of space lesser will be the I/O operations. That is why the
+amount by which the disk I/O operations will be reduced is equal to
+$\log(M)$. So if there were $M$ I/O operations were to take place, now only $M
+- \log(M)$ I/O operations would take place.
+
+\end{document}
