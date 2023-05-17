@@ -1,0 +1,95 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{15.6 Index-Based Algorithms}
+
+\subsubsection*{Exercise 6.1}
+
+a)
+
+Initially read and output all the tuples in relation $R$. Then, for every tuple
+$t$ in $S$ use the index for attribute $R.a$ to match the tuples on the relation
+of $R$ with $t.a$. If $t$ is not present on those tuples, then output the tuple $t$.
+
+This operation works efficiently if the relation $S$ contains small values and
+$R$ contains large values. So that the main memory does not exceed the
+size.
+
+b)
+
+Initially read and output all the tuples in relation $S$. Then, for every tuple
+$t$ in $S$ use the index for attribute $R.a$ to match the tuples on the relation
+of $R$ with $t.a$. If $t$ is not present on those tuples, then output the tuple $t$.
+
+This operation works efficiently if the relation $S$ contains small values and
+$R$ contains large values. So that the main memory does not exceed the
+size.
+
+c)
+
+This operation uses the index for $R.a$ to process the blocks of 'R' relation.
+With given index key, organize each block and if there is only one tuple
+for the given index key the output that tuple $t$.
+
+\subsubsection*{Exercise 6.2}
+
+a)
+
+$$
+\frac{10000}{k}
+$$
+
+b)
+
+$$
+\frac{500000}{k}
+$$
+
+c)
+
+We need to retrieve every block of $R$, which in this case is
+$10000$ disk I/O's.
+
+\subsubsection*{Exercise 6.3}
+
+a)
+
+$$
+\frac{B(R)}{V(R, a)} * \text{Key} = 1000
+$$
+
+b)
+
+$$
+\frac{T(R)}{V(R, a)} * \text{Key} = 50000
+$$
+
+c)
+
+We need to retrieve every block of $R$, which in this case is
+$10000$ disk I/O's.
+
+\subsubsection*{Exercise 6.4}
+
+Need community help.
+
+\subsubsection*{Exercise 6.5}
+
+With the index, we have only to retrieve the blocks containing \verb|MovieStar|
+records for the stars of \verb|King Kong|. We don't know how many stars there
+are, but it is safe to assume that their records will occupy many more
+blocks than there are stars in the two \verb|King Kong| movies.
+Thus, using the index allows us to take the join while accessing only a
+small part of the \verb|MovieStar| relation and is therefore to be preferred to a
+sort- or hash-join, each of which will access the entire \verb|MovieStar| relation
+at least once.
+
+\subsubsection*{Exercise 6.6}
+
+Due to skipping pf sorting phase, it reads one block of $S$ and one block
+read $R$ and this method works as long as the number of tuples present in
+the relation $R$ and $S$ which contains the same $Y$-value that fit into $M$
+blocks.
+
+\end{document}
