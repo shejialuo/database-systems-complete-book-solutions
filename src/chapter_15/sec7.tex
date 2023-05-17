@@ -1,0 +1,81 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{15.7 Buffer Management}
+
+\subsubsection*{Exercise 7.1}
+
+a)
+
+The terms $B(R)$ and $B(S)$ represents binary relations between the relations
+$R$ and $S$. In one-pass, there is an approximate requirement for the binary
+operation between the relations $R$ and $S$ as:
+
+$$
+\min(B(R), B(S)) \leq M
+$$
+
+This approximation means that the one buffer is used to read the blocks
+of larger relation and for smaller relations, it requires $M$ buffers
+additionally with the main memory structure. According to the one-pass
+algorithm and given terms, the relation either $R$ or $S$ must fit into the
+memory. So, the approximation rule would be:
+
+$$
+min(B(R), B(S)) \geq \frac{M}{2}
+$$
+
+
+b)
+
+This algorithm might work properly only if the one-pass union,
+intersection and difference between the relations $R_{i}$ and $S_{i}$
+whose sizes are found to be $\frac{B(R)}{M - 1}$ and $\frac{B(S)}{M - 1}$
+respectively as it is known, the one-pass algorithm requires
+operand and it occupies at most  $M - 1$ blocks.
+
+Therefore the two-pass hash based algorithms requires at least
+$\min(B(R), B(S)) \leq M^{2}$ approximately.
+
+Since the worst case of two-pass algorithm contains $\frac{M}{2}$
+blocks. The memory between $M$ and $\frac{M}{2}$ requires approximately
+
+$$
+\min(B(R), B(S)) \leq \frac{M^2}{4}
+$$
+
+c)
+
+$$
+\max(B(R), B(S)) \leq \frac{M^2}{4}
+$$
+
+\subsubsection*{Exercise 7.2}
+
+a)
+
+Following the concept of FIFO the new blocks occupies the buffer by
+emptying the current longest block in buffer. When doing the nested loop
+join operation, the FIFO pointer pointing the longest block of the buffer
+and it need not points out the first tuple in the buffer.
+
+So it will not improve the number of disk I/O's on nested loop
+join operations.
+
+b)
+
+The clock algorithm contains the handle which places the disk on the
+available buffer by rotating the handle in clockwise direction. While doing
+the nested loop join, approach also doesn't searches for the first tuple as
+the handle of the clock is present on the available space of the buffer.
+
+It will not improve the number of disk I/O's on nested loop join
+operations.
+
+\subsubsection*{Exercise 7.3}
+
+Need community help.
+
+\end{document}
+
