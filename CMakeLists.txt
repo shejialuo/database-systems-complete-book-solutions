@@ -1,8 +1,9 @@
 # This file is copied from
 # https://gist.github.com/voldien/445f4c5fc0ea7678f0e24069eb839320#file-cmakelists-txt
 
-PROJECT(database-systems-complete-book-solutions NONE)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.11)
+
+PROJECT(database-systems-complete-book-solutions NONE)
 
 FIND_PACKAGE(LATEX)
 
