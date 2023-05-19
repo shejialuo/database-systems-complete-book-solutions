@@ -1,0 +1,134 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{16.2 Algebraic Laws for Improving Query Plans}
+
+\subsubsection*{Exercise 2.1}
+
+We could rewrite the $\sigma_{C}(R \cap S)$ to $\sigma_{C}(R) \cap \sigma_{C}(S)$.
+whenever there exists indexes, it would make the query faster.
+
+\subsubsection*{Exercise 2.2}
+
+a)
+
+Let $R(A, B) = \{(2,4)\}$ and $S(A, B) = \{2, 7\}$. Then
+
+\begin{align*}
+  &\pi_{A}(R \cup S) = \{(2), (2)\} \\
+  &\pi_{A}(R) \cup \pi_{a}(S) = \{(2)\}
+\end{align*}
+
+b)
+
+Let $R(A, B) = \{(2,4)\}$ and $S(A, B) = \{2, 7\}$. Then
+
+\begin{align*}
+  &\pi_{A}(R - S) = \{(3)\} \\
+  &\pi_{A}(R) - \pi_{A}(S) = \emptyset
+\end{align*}
+
+\begin{align*}
+  &\pi_{A}(R -_{B} S) = \{(3)\} \\
+  &\pi_{A}(R) -_{B} \pi_{A}(S) = \emptyset
+\end{align*}
+
+c)
+
+Let $R(A, B) = \{(2,4), (2, 5)\}$
+
+\begin{align*}
+  &\delta(\pi_{A}(R)) = \{(2)\} \\
+  &\pi_{A}(\delta(R)) = \{(2), (2)\}
+\end{align*}
+
+d)
+
+Let $R(A, B) = \{(2,4), (2, 4)\}$ and $S(A, B) = \{2, 4\}$
+
+\begin{align*}
+  &\delta(R \cup_{B} S) = \{2, 4\} \\
+  &\delta(R) \cup_{B} \delta(S) = \{(3, 4), (3, 4)\}
+\end{align*}
+
+\subsubsection*{Exercise 2.3}
+
+For every tuple $r_{i}$ of relation $R$ and every tuple $s_{j}$ of
+relation $S$, we could have the following
+
+\begin{align*}
+  \pi_{L}(R \cup_{B} S) &= \pi_{L}(r_{i}, s_{j}) \\
+                        &= \pi_{L}(r_{i}), \pi_{L}(s_{j}) \\
+                        &= \pi_{L}(R) \cup_{B} \pi_{L}(S)
+\end{align*}
+
+\subsubsection*{Exercise 2.4}
+
+a)
+
+For every tuple $r_{i}$ of relation $R$ we could have
+
+\begin{align*}
+  & R \cup R = \{r_{i} \} \\
+  & R \cup_{B} R = \{r_{i}, r_{i}\}
+\end{align*}
+
+b)
+
+For every tuple $r_{i}$ of relation $R$ we could have
+
+\begin{align*}
+  & R \cap R \in \{r_{i}\} \\
+  & R \cap_{B} R = \{r_{i}, r_{i}\}
+\end{align*}
+
+c)
+
+For every tuple $r_{i}$ of relation $R$ we could have
+
+\begin{align*}
+  & R - R = \emptyset \\
+  & R -_{B} R = \emptyset
+\end{align*}
+
+d)
+
+Let $x$ be the tuples of relation $R$, $S$, and $T$.
+
+\begin{align*}
+  R \cup_{B} (S \cap_{B} T) &= R \cup_{B} (x, x) \\
+                              &= x,x,x
+\end{align*}
+
+\begin{align*}
+  (R \cup_{B} S) \cap_{B} (R \cup_{B} T) &= (x, x) \cap_{B} (x, x) \\
+                                         &= x,x,x,x
+\end{align*}
+
+
+\subsubsection*{Exercise 2.5}
+
+Need community help.
+
+\subsubsection*{Exercise 2.6}
+
+Need community help.
+
+\subsubsection*{Exercise 2.7}
+
+Need community help.
+
+\subsubsection*{Exercise 2.8}
+
+Need community help.
+
+\subsubsection*{Exercise 2.9}
+
+Need community help.
+
+\subsubsection*{Exercise 2.10}
+
+Need community help.
+
+\end{document}
