@@ -1,0 +1,93 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{16.3 From Parse Trees to Logical Query Plans}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+$$
+\pi_{a, R.b, S.b, S.c, T.c, d}(R(a, b) \bowtie_{R.b = S.b} S(b, c)) \bowtie_{S.c > T.c} T(c, d)
+$$
+
+b)
+
+$$
+\pi_{a, R.b, S.b, S.c, T.c, U.d, e}(R(a, b) \bowtie_{R.b = S.b} S(b,c))
+\bowtie_{S.c = T.c}(T(c, d) \bowtie_{T.d = U.d} U(d,e))
+$$
+
+c)
+
+$$
+\pi_{L}(R(a, b) \bowtie_{R.b = S.b} S(b,c)) \bowtie_{R.a = U.a \ \text{AND} \ S.c = T.c}
+(T(c, d) \bowtie_{T.d = U.d} U(a,d))
+$$
+
+\subsubsection*{Exercise 3.2}
+
+Need community help.
+
+\subsubsection*{Exercise 3.3}
+
+a)
+
+The rule for the given condition is
+
+$$
+\pi_{L}(\sigma_{COUNT > 0}(R \times \delta(\pi_{\emptyset}(S))))
+$$
+
+\begin{itemize}
+  \item Create an expression for subquery $S$, the project only the empty
+        list of attributes. Apply $\delta$ on the projection to eliminate
+        duplicates.
+  \item Take the product of $R$ and the result from $S$.
+  \item Check if the product of $R$ and $S$ is empty. If the product is empty,
+        then the projected list $\pi_{L}$ is empty. If the product is not empty,
+        the projected list is $R$.
+\end{itemize}
+
+b)
+
+$$
+\pi_{L}(R \bowtie_{a = b} \delta(S))
+$$
+
+\begin{itemize}
+  \item Create an expression for the subquery $S$. If $S$ may have duplicates,
+        apply the $\delta$ operator to $S$.
+  \item Get the product of $R$ and $S$ based on the condition that equates
+        $a$ to the corresponding attribute of $b$ of $S$.
+  \item Project the result of the product to the attributes of $L$.
+\end{itemize}
+
+c)
+
+$$
+\pi_{L}(R \bowtie_{a <> b} \delta(S))
+$$
+
+\begin{itemize}
+  \item Create an expression for the subquery $S$. If $S$ may have duplicates,
+        apply the $\delta$ operator to $S$.
+  \item Get the product of $R$ and $S$ based on the condition that do not equates
+        $a$ to the corresponding attribute of $b$ of $S$.
+  \item Project the result of the product to the attributes of $L$.
+\end{itemize}
+
+\subsubsection*{Exercise 3.4}
+
+Need community help.
+
+\subsubsection*{Exercise 3.5}
+
+It's a combinatorics problem.
+
+$$
+3! \times 3! \times 2 = 72
+$$
+
+\end{document}
