@@ -1,0 +1,36 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{18.1 Serial and Serializable Schedules}
+
+\subsubsection*{Exercise 1.1}
+
+\begin{itemize}
+  \item Flight information is retrieved from database element $A$
+  and $B$, which means $r_{1}(A)$ and $r_{1}(B)$.
+  \item Selects a flight and flight reservation is made for the customer,
+  which means $r_{1}(B)$ and $w_{1}(B)$.
+  \item Customer selects a flight seat from database element $C$,
+  which means $r_{1}(C)$ and $w_{1}(C)$.
+  \item Get customer's credit card number and records flight bill in
+  database element $D$, which means $r_{1}(D)$ and $w_{1}(D)$.
+  \item Customer's phone and flight data is inserted to database element
+  $E$, which means $r_{1}(E)$ and $w_{1}(E)$.
+\end{itemize}
+
+Thus we can get the following answer:
+
+$$
+r_{1}(A), r_{1}(B), w_{1}(B), r_{1}(C), w_{1}(C), r_{1}(D), w_{1}(D), r_{1}(E), w_{1}(E)
+$$
+
+\subsubsection*{Exercise 1.2}
+
+This is a classical combinatorics question.
+
+$$
+\frac{10!}{4! \times (10 - 4)!} = 210
+$$
+
+\end{document}
