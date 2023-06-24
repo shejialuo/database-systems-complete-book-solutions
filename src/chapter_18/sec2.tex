@@ -1,0 +1,89 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{18.2 Conflict-Serializability}
+
+\subsubsection*{Exercise 2.1}
+
+a)
+
+I don't give an example here, because the $t$ and $s$ is different,
+thus $(T_{1}, T_{2})$ would be equivalent to $(T_{2}, T_{1})$.
+
+b)
+
+Need community help.
+
+c)
+
+According to the definition of serial schedules. The only serial order
+that we have is $(T_{1}, T_{2})$ and $(T_{2}, T_{1})$. Thus we can
+
+d)
+
+To identify the number of serializable schedule of the 12 given actions,
+we need to consider the interleaving of the serial order $(T_{1}, T_{2})$
+and $(T_{2}, T_{1})$. And we have the following order:
+
+\begin{itemize}
+  \item $T_{1}$ operates on $A$ and $B$ before $T_{2}$.
+  \item $T_{2}$ operates on $A$ and $B$ before $T_{1}$.
+  \item $T_{1}$ operates on $A$ first, but $T_{2}$ operates on $B$ first.
+\end{itemize}
+
+
+$$
+\left(\frac{6!}{3! \times (6 - 3)!}\right)^{2} = 400
+$$
+
+\subsubsection*{Exercise 2.2}
+
+a)
+
+We cannot swap the adjacent actions without a conflict, only
+$(T_{1}, T_{2})$ is conflict equivalent to itself. So the answer is 1.
+
+b)
+
+We can swap the adjacent actions without a conflict, so the answer is
+
+c)
+
+$$
+\left(\frac{4!}{2! \times (4 - 2)!}\right)^{2} = 36
+$$
+
+d)
+
+The number of actions differs. This implies that we have different
+answers as number of actions determines the number of possible
+interleavings for the serializable order.
+
+\subsubsection*{Exercise 2.3}
+
+a)
+
+$$
+\frac{4!}{2! \times (4 - 2)!} \times 2 = 12
+$$
+
+b)
+
+$$
+\left(\frac{4!}{2! \times (4 - 2)!}\right)^{2} = 36
+$$
+
+\subsubsection*{Exercise 2.4}
+
+Need community help.
+
+\subsubsection*{Exercise 2.5}
+
+Need community help.
+
+\subsubsection*{Exercise 2.6}
+
+Need community help.
+
+\end{document}
