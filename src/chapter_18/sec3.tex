@@ -1,0 +1,58 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{18.3 Enforcing Serializability by Locks}
+
+\subsubsection*{Exercise 3.1}
+
+a)
+
+Suppose that we have the schedule derived from the given transactions.
+
+$$
+r_{1}(A); r_{2}(B); w_{2}(B); r_{2}(A); w_{1}(A); r_{1}(B); w_{1}(B); w_{2}(A)
+$$
+
+Note that $r_{1}(A)$ must hold a lock on $A$, since a transaction is granted with
+lock before its read and write action. Likewise, $r_{2}(A)$ must also hold a lock
+on $A$.
+
+Since the unlock of $A$ for $r_{1}(A)$ is executed after $w_{1}(A)$ and $r_{2}(A)$
+appears before $w_{1}(A)$. Therefore, the schedule is prohibited.
+
+b)
+
+$$
+\frac{4!}{2! \times (4 - 2)!} \times \frac{4!}{2! \times (4 - 2)!} + 2 = 38
+$$
+
+c)
+
+$$
+\frac{4!}{2! \times (4 - 2)!} \times \frac{4!}{2! \times (4 - 2)!} = 36
+$$
+
+
+d)
+
+The number of conflict serializable schedule is 2.
+
+e)
+
+All legal schedules are serializable. It is impossible for a legal schedule
+to be unserializable.
+
+\subsubsection*{Exercise 3.2}
+
+Need community help.
+
+\subsubsection*{Exercise 3.3}
+
+Need community help.
+
+\subsubsection*{Exercise 3.4}
+
+Need community help.
+
+\end{document}
