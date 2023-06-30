@@ -15,6 +15,10 @@ This work is licensed under a
 
 You can download the PDF in the [release](https://github.com/shejialuo/database-systems-complete-book-solutions/releases) page.
 
+## Need help
+
+Due to time constraints, there are still many unanswered questions that require the help of the community.
+
 ## Build
 
 This project uses `CMake` for building the latex files. And you should use `xelatex` to build.
