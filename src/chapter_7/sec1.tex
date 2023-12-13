@@ -16,15 +16,19 @@ b)
 
 \begin{lstlisting}[language=sql]
   FOREIGN KEY (producerC#) REFERENCES MovieExec(cert#)
-    ON UPDATE SET NULL;
+  ON UPDATE SET NULL  -- if MOvie exec cert# is changed, set to null
+                      -- in practice this should not be used
+                      -- since it will lose referential integrity
+                      -- ideally, it should be CASCADE
+  ON DELETE SET NULL; -- if Movie exec does not exist
 \end{lstlisting}
 
 c)
 
 \begin{lstlisting}[language=sql]
   FOREIGN KEY (producerC#) REFERENCES MovieExec(cert#)
-    ON UPDATE SET CASCADE
-    ON DELETE SET CASCADE;
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
 \end{lstlisting}
 
 d)
@@ -32,6 +36,7 @@ d)
 \begin{lstlisting}[language=sql]
   FOREIGN KEY (movieTitle, movieYear)
     REFERENCES Movies(title, year);
+-- by default, UPDATE and CASCADE are restrict
 \end{lstlisting}
 
 e)
@@ -43,8 +48,56 @@ e)
 
 \subsubsection*{Exercise 1.2}
 
-No, A foreign key must refer to the primary key in some
-relation. But \verb|movieTitle| and \verb|movieYear|
-are not a key for \verb|StarsIn|.
+No.
+
+Assume the foreign key constraint ($a$) in relation R that references relation S.
+
+Thus:
+
+\begin{itemize}
+\item R must contain the attribute(s) $a$
+\item $a$ is a candidate key of S
+\item if a tuple in R contains $a$, $a$ exists in S.
+\end{itemize}
+
+Therefore, we can't enforce that every Movie has a tuple in StarsIn because:
+
+\begin{itemize}
+\item Movies does not contain the candidate key attributes of StarsIn
+\end{itemize}
+
+\subsubsection*{Exercise 1.3}
+
+\begin{itemize}
+\item Product: model
+\item PC: model
+\item Laptop: model
+\item Printer: model  
+\end{itemize}
+
+In PC, Laptop and Printer, we need a foreign key constraint:
+
+\begin{lstlisting}[language=sql]
+CREATE TABLE Product(
+  ...
+  PRIMARY KEY (model)
+);
+CREATE TABLE PC(
+  ...
+  PRIMARY KEY (model),
+  FOREIGN KEY (model) REFERENCES Product(model)
+);
+CREATE TABLE Laptop(
+  ...
+  PRIMARY KEY (model),
+  FOREIGN KEY (model) REFERENCES Product(model)
+);
+CREATE TABLE Printer(
+  ...
+  PRIMARY KEY (model),
+  FOREIGN KEY (model) REFERENCES Product(model)
+);
+
+\end{lstlisting}
 
 \end{document}

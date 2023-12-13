@@ -6,104 +6,169 @@
 
 \subsubsection*{Exercise 2.1}
 
+The answers below are attribute constraints, defined after the corresponding \verb@<type>@
+of the attribute.
+
 a)
 
 \begin{lstlisting}[language=sql]
-  year CHECK (year >= 1915);
+  year <type> CHECK (year >= 1915)
 \end{lstlisting}
 
 b)
 
 \begin{lstlisting}[language=sql]
-  length CHECK (length >= 60 AND length <= 250);
+  length <type> CHECK (length >= 60 AND length <= 250)
 \end{lstlisting}
 
 c)
 
 \begin{lstlisting}[language=sql]
-  studioName CHECK
-    (studioName in('Disney', 'Fox', 'MGM', 'Paramount'));
+  studioName <type> CHECK
+    (studioName in('Disney', 'Fox', 'MGM', 'Paramount'))
 \end{lstlisting}
 
 \subsubsection*{Exercise 2.2}
 
-a)
+The answers below are attribute constraints, defined after the corresponding \verb@<type>@
+of the attribute.
+
+a) In relation \verb|Laptop|:
 
 \begin{lstlisting}[language=sql]
-  birthdate CHECK
-    (birthdate NOT IN (SELECT year FROM Movies));
+  speed <type> CHECK (speed >= 2.0 )
 \end{lstlisting}
 
-b)
+b) In relation \verb|Printer|:
 
 \begin{lstlisting}[language=sql]
-  UNIQUE(address);
+  type <type> CHECK (type IN ('laser','ink-jet', 'bubble-jet'))
 \end{lstlisting}
 
-c)
+c) In relation \verb|Product|:
+
+\begin{lstlisting}[language=sql]
+  type <type> CHECK (type IN ('PC','laptop', 'printer'))
+\end{lstlisting}
+
+d) In relation \verb|Product|. This checks that it exists in at least one of them, not that it exists in
+exactly one of them. This is one potential solution:
+
+\begin{lstlisting}[language=sql]
+  model <type> CHECK (EXISTS (select model from Printers P where
+                              P.model = model)) or
+                      EXISTS (select model from Laptops L where
+                              L.model = model)) or
+                      EXISTS (select model from Printers P where
+                              P.model = model)))
+\end{lstlisting}
+
+
+\subsubsection*{Exercise 2.3}
+
+The answers below are tuple-based constraints:
+
+a) Assume the function $year(date)$ extracts the year of a given $date$.
+
+As a tuple constraint in \verb|MovieStar|:
+
+\begin{lstlisting}[language=sql]
+  CHECK  (year(birthdate) < ALL (SELECT movieyear
+                                 FROM StarsIn
+                                 WHERE starName = name))
+\end{lstlisting}
+
+and as a tuple constraint in \verb|StarsIn|:
+
+\begin{lstlisting}[language=sql]
+  CHECK  (movieyear > (SELECT year(birthdate)
+                       FROM StarsIn
+                       WHERE starName = name))
+\end{lstlisting}
+
+b) as a tuple constraint, in relation \verb|Studios|:
+
+\begin{lstlisting}[language=sql]
+  UNIQUE(address)
+\end{lstlisting}
+
+c) as a tuple constraints:
 
 For \verb|MovieStar|:
 
 \begin{lstlisting}[language=sql]
-  name CHECK
-    (name NOT IN (SELECT name FROM MovieExec));
+  CHECK (name NOT IN (SELECT name FROM MovieExec))
 \end{lstlisting}
 
 For \verb|MovieExec|:
 
 \begin{lstlisting}[language=sql]
-  name CHECK
-    (name NOT IN (SELECT name FROM MovieStar));
+  CHECK (name NOT IN (SELECT name FROM MovieStar))
 \end{lstlisting}
 
-d)
+d) as tuple constraint in \verb|Studio|:
 
 \begin{lstlisting}[language=sql]
-  name CHECK
-    (name IN (SELECT name FROM Movies));
+  CHECK (EXISTS (SELECT * FROM Movies where studioName = name))
 \end{lstlisting}
 
-e)
+e) as a tuple constraint, in \verb|Movies|
 
 \begin{lstlisting}[language=sql]
-  CHECK
-    (producerC# IN (SELECT presC# FROM Studio))
-    UNION
-    (presC# IN (SELECT producerC# FROM Movie));
-\end{lstlisting}
-
-\subsubsection*{Exercise 2.3}
-
-a)
-
-\begin{lstlisting}[language=sql]
-  CHECK(speed < 2.0 AND price < 600);
-\end{lstlisting}
-
-b)
-
-\begin{lstlisting}[language=sql]
-  CHECK(screen < 15 AND (hd >= 40 OR price < 1000));
+  CHECK(
+    -- it not a president
+    (producerC# NOT IN (SELECT presC# FROM Studio))
+    OR --otherwise the studio must the same than the president
+    (studioName IN (SELECT name from Studio where presC# = producerC#))
+    )
 \end{lstlisting}
 
 \subsubsection*{Exercise 2.4}
 
+a) as a tuple constraint in \verb|PC|:
+
+\begin{lstlisting}[language=sql]
+  CHECK(speed >= 2.0  -- either 2.0 or more
+       OR
+       price <= 600)  -- or at most 600
+\end{lstlisting}
+
+b) as a tuple constraint in \verb|Laptop|:
+
+\begin{lstlisting}[language=sql]
+  CHECK(
+    (screen >= 15) -- screen is 15 inches or more
+    OR
+    (hd >= 40 OR price < 1000) -- or its HD is at least 40
+                               -- or price < 1000
+  );
+\end{lstlisting}
+
+\subsubsection*{Exercise 2.5}
+
 a)
 
 \begin{lstlisting}[language=sql]
-  CHECK(bore > 16);
+  CHECK(bore > 16)
 \end{lstlisting}
 
 b)
 
 \begin{lstlisting}[language=sql]
-  CHECK(numGuns > 9 AND bore < 14);
+  CHECK(numGuns < 9 -- at most 9 guns
+       OR
+       bore < 14 ) -- or its bore must be no longer than 14
 \end{lstlisting}
 
 c)
 
+In \verb|Ships|:
+
 \begin{lstlisting}[language=sql]
-  CHECK(name NOT IN (SELECT name from Battles));
+  CHECK(launched < ALL (SELECT date
+                       FROM Battles B JOIN Outcomes
+                       ON (battle = B.name
+                           and ship = name))
 \end{lstlisting}
 
 \subsubsection*{Exercise 2.5}
