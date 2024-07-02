@@ -123,9 +123,9 @@ k)
   R5 &:= R1 \bowtie_{maker=maker2 \ \mathbf{AND} \ model <> model2} R2 \\
   R6 &:= R3 \bowtie_{maker=maker3 \ \mathbf{AND} \ model3 <> model2
          \ \mathbf{AND} \ model3 <> model}R5 \\
-  R7 &:= R4 \bowtie_{maker4=maker \ \mathbf{AND} \ (model4 = model \ \mathbf{OR} \
-         model4 = model2 \ \mathbf{OR} \ model4 = model3)} R6 \\
-  R8 &:= \pi_{maker}(R7)
+  R7 &:= R4 \bowtie_{maker=maker4 \ \mathbf{AND} \ (model4 <> model \ \mathbf{AND} \
+         model4 <> model2 \ \mathbf{AND} \ model4 <> model3)} R6 \\
+  R8 &:= \pi_{maker}(R7 - R6)
 \end{align*}
 
 \subsubsection*{Exercise 4.2}
